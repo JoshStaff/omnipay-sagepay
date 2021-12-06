@@ -1,9 +1,9 @@
 <?php
 
-namespace Omnipay\SagePay\Message;
+namespace Omnipay\Opayo\Message;
 
 /**
- * Sage Pay Direct Capture Request.
+ * Opayo Direct Capture Request.
  * Performs a release or an authorise, depending on the
  * setting 'useAuthenticate'.
  */

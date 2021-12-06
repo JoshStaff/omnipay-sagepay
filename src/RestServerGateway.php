@@ -1,25 +1,25 @@
 <?php
 
-namespace Omnipay\SagePay;
+namespace Omnipay\Opayo;
 
-use Omnipay\SagePay\Message\ServerRestCompletePurchaseRequest;
-use Omnipay\SagePay\Message\ServerRestMerchantSessionKeyRequest;
-use Omnipay\SagePay\Message\ServerRestPurchaseRequest;
-use Omnipay\SagePay\Message\ServerRestRefundRequest;
-use Omnipay\SagePay\Message\ServerRestRepeatRequest;
-use Omnipay\SagePay\Message\ServerRestRetrieveTransactionRequest;
-use Omnipay\SagePay\Message\ServerRestVoidRequest;
+use Omnipay\Opayo\Message\ServerRestCompletePurchaseRequest;
+use Omnipay\Opayo\Message\ServerRestMerchantSessionKeyRequest;
+use Omnipay\Opayo\Message\ServerRestPurchaseRequest;
+use Omnipay\Opayo\Message\ServerRestRefundRequest;
+use Omnipay\Opayo\Message\ServerRestRepeatRequest;
+use Omnipay\Opayo\Message\ServerRestRetrieveTransactionRequest;
+use Omnipay\Opayo\Message\ServerRestVoidRequest;
 
 /**
- * Sage Pay Rest Server Gateway
+ * Opayo Rest Server Gateway
  */
 class RestServerGateway extends ServerGateway
 {
     public function getName()
     {
-        return 'Sage Pay REST Server';
+        return 'Opayo REST Server';
     }
-    
+
     public function getUsername()
     {
         return $this->getParameter('username');
@@ -65,7 +65,7 @@ class RestServerGateway extends ServerGateway
     }
 
     /**
-     * Get transaction information from Sage.
+     * Get transaction information from Opayo.
      */
     public function getTransaction(array $parameters = array())
     {

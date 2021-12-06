@@ -1,6 +1,6 @@
 <?php
 
-namespace Omnipay\SagePay\Extend;
+namespace Omnipay\Opayo\Extend;
 
 /**
  * Extends the Item class to support properties

@@ -1,14 +1,14 @@
 <?php
 
-namespace Omnipay\SagePay\Message;
+namespace Omnipay\Opayo\Message;
 
 /**
- * Sage Pay Abstract Rest Request.
- * Base for Sage Pay Rest Server.
+ * Opayo Abstract Rest Request.
+ * Base for Opayo Rest Server.
  */
 use Omnipay\Common\Exception\InvalidRequestException;
-use Omnipay\SagePay\Extend\Item as ExtendItem;
-use Omnipay\SagePay\ConstantsInterface;
+use Omnipay\Opayo\Extend\Item as ExtendItem;
+use Omnipay\Opayo\ConstantsInterface;
 use Psr\Http\Message\ResponseInterface;
 
 abstract class AbstractRestRequest extends AbstractRequest implements ConstantsInterface
@@ -61,7 +61,7 @@ abstract class AbstractRestRequest extends AbstractRequest implements ConstantsI
      * The name of the service used in the endpoint to send the message.
      * With override for services used on specific parent services
      *
-     * @return string Sage Pay endpoint service name.
+     * @return string Opayo endpoint service name.
      */
     public function getSubService()
     {
@@ -160,7 +160,7 @@ abstract class AbstractRestRequest extends AbstractRequest implements ConstantsI
     /**
      * Set the credentialType field(s).
      *
-     * @param json $credentialType The credentialType for sagepay.
+     * @param json $credentialType The credentialType for Opayo.
      * @return $this
      */
     public function setCredentialType($credentialType)

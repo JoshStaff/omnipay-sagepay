@@ -1,13 +1,13 @@
 <?php
 
-namespace Omnipay\SagePay\Message\Form;
+namespace Omnipay\Opayo\Message\Form;
 
 /**
- * Sage Pay Form Complete Authorize Response.
+ * Opayo Form Complete Authorize Response.
  */
 
-use Omnipay\SagePay\Message\AbstractRequest;
-use Omnipay\SagePay\Message\Response as GenericResponse;
+use Omnipay\Opayo\Message\AbstractRequest;
+use Omnipay\Opayo\Message\Response as GenericResponse;
 use Omnipay\Common\Exception\InvalidResponseException;
 use Omnipay\Common\Exception\InvalidRequestException;
 

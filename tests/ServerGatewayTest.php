@@ -1,6 +1,6 @@
 <?php
 
-namespace Omnipay\SagePay;
+namespace Omnipay\Opayo;
 
 use Omnipay\Tests\GatewayTestCase;
 
@@ -63,7 +63,7 @@ class ServerGatewayTest extends GatewayTestCase
 
     public function testInheritsDirectGateway()
     {
-        $this->assertInstanceOf('Omnipay\SagePay\DirectGateway', $this->gateway);
+        $this->assertInstanceOf('Omnipay\Opayo\DirectGateway', $this->gateway);
     }
 
     public function testAuthorizeSuccess()

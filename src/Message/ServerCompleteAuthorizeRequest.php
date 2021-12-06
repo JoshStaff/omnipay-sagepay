@@ -1,11 +1,11 @@
 <?php
 
-namespace Omnipay\SagePay\Message;
+namespace Omnipay\Opayo\Message;
 
 use Omnipay\Common\Exception\InvalidResponseException;
 
 /**
- * Sage Pay Server Complete Authorize Request
+ * Opayo Server Complete Authorize Request
  * DEPRECATED - use $gateway->notify()
  */
 class ServerCompleteAuthorizeRequest extends AbstractRequest
@@ -14,8 +14,8 @@ class ServerCompleteAuthorizeRequest extends AbstractRequest
      * Get the signature calculated from the three pieces of saved local
      * information:
      * - VendorTxCode - merchant site ID (aka transactionId).
-     * - VPSTxId - SagePay ID (aka transactionReference)
-     * - SecurityKey - SagePay one-use token.
+     * - VPSTxId - Opayo ID (aka transactionReference)
+     * - SecurityKey - Opayo one-use token.
      * and the POSTed transaction results.
      *
      * Note that the three items above are passed in as a single JSON structure

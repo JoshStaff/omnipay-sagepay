@@ -1,9 +1,9 @@
 <?php
 
-namespace Omnipay\SagePay\Message;
+namespace Omnipay\Opayo\Message;
 
 /**
- * Sage Pay Shared Refund Request
+ * Opayo Shared Refund Request
  */
 class SharedRefundRequest extends AbstractRequest
 {
