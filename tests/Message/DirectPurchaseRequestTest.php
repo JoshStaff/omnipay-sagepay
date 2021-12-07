@@ -1,6 +1,6 @@
 <?php
 
-namespace Omnipay\SagePay\Message;
+namespace Omnipay\Opayo\Message;
 
 use Omnipay\Tests\TestCase;
 
@@ -16,7 +16,7 @@ class DirectPurchaseRequestTest extends DirectAuthorizeRequestTest
      */
     protected $request;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 

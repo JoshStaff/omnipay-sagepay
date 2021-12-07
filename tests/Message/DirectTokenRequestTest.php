@@ -1,6 +1,6 @@
 <?php
 
-namespace Omnipay\SagePay\Message;
+namespace Omnipay\Opayo\Message;
 
 use Omnipay\Tests\TestCase;
 
@@ -15,7 +15,7 @@ class DirectTokenRequestTest extends TestCase
      */
     protected $card;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->request = new DirectTokenRegistrationRequest(
             $this->getHttpClient(),

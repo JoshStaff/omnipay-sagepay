@@ -1,7 +1,7 @@
 {
-    "name": "omnipay/sagepay",
+    "name": "omnipay/opayo",
     "type": "library",
-    "description": "Sage Pay driver for the Omnipay PHP payment processing library",
+    "description": "Opayo driver for the Omnipay PHP payment processing library",
     "keywords": [
         "gateway",
         "merchant",
@@ -10,7 +10,8 @@
         "payment",
         "purchase",
         "sage pay",
-        "sagepay"
+        "sagepay",
+        "opayo"
     ],
     "homepage": "https://github.com/thephpleague/omnipay-sagepay",
     "license": "MIT",
@@ -30,16 +31,17 @@
     ],
     "autoload": {
         "psr-4": {
-            "Omnipay\\SagePay\\" : "src/"
+            "Omnipay\\Opayo\\" : "src/"
         }
     },
     "require": {
-        "php": "^5.6|^7",
+        "php": "^7.2|^8",
         "omnipay/common": "~3.0"
     },
     "require-dev": {
-        "omnipay/tests": "~3.0",
-        "squizlabs/php_codesniffer": "^3"
+        "omnipay/tests": "^4.1",
+        "squizlabs/php_codesniffer": "^3",
+        "phpspec/prophecy-phpunit": "^2.0"
     },
     "extra": {
         "branch-alias": {

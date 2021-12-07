@@ -1,6 +1,6 @@
 <?php
 
-namespace Omnipay\SagePay\Message;
+namespace Omnipay\Opayo\Message;
 
 use Omnipay\Tests\TestCase;
 
@@ -16,7 +16,7 @@ class DirectAuthorizeRequestTest extends TestCase
      */
     protected $request;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -123,13 +123,13 @@ class DirectAuthorizeRequestTest extends TestCase
         // The element does exist, and must contain the basket XML, with optional XML header and
         // trailing newlines.
         $this->assertArrayHasKey('BasketXML', $data);
-        $this->assertContains($basketXml, $data['BasketXML']);
+        $this->assertStringContainsString($basketXml, $data['BasketXML']);
     }
 
     public function testBasketExtendItem()
     {
         $items = new \Omnipay\Common\ItemBag(array(
-            new \Omnipay\SagePay\Extend\Item(array(
+            new \Omnipay\Opayo\Extend\Item(array(
                 'name' => 'Name',
                 'description' => 'Description',
                 'quantity' => 1,
@@ -151,7 +151,7 @@ class DirectAuthorizeRequestTest extends TestCase
         // The element does exist, and must contain the basket XML, with optional XML header and
         // trailing newlines.
         $this->assertArrayHasKey('BasketXML', $data);
-        $this->assertContains($basketXml, $data['BasketXML']);
+        $this->assertStringContainsString($basketXml, $data['BasketXML']);
     }
 
     public function testGetDataNoReferrerId()
@@ -214,7 +214,7 @@ class DirectAuthorizeRequestTest extends TestCase
         $data = $this->request->getData();
 
         // these must be empty string, not null
-        // (otherwise Guzzle ignores them, and SagePay throws a fit)
+        // (otherwise Guzzle ignores them, and Opayo throws a fit)
         $this->assertSame('', $data['BillingState']);
         $this->assertSame('', $data['DeliveryState']);
     }
@@ -259,7 +259,7 @@ class DirectAuthorizeRequestTest extends TestCase
         $this->assertNull($data['BillingAddress2']);
 
         // This tests that the BillingAddress2 may be left unset,
-        // which defaults to null. When it is sent to SagePay, it gets
+        // which defaults to null. When it is sent to Opayo, it gets
         // converted to an empty string. I'm not clear how that would be
         // tested.
     }
@@ -280,7 +280,7 @@ class DirectAuthorizeRequestTest extends TestCase
         // The element does exist, and must contain the basket XML, with optional XML header and
         // trailing newlines.
         $this->assertArrayHasKey('BasketXML', $data);
-        $this->assertNotContains('<discount>', $data['BasketXML']);
+        $this->assertStringNotContainsString('<discount>', $data['BasketXML']);
     }
 
     public function testMixedBasketWithSpecialChars()
@@ -321,7 +321,7 @@ class DirectAuthorizeRequestTest extends TestCase
         $data = $this->request->getData();
 
         $this->assertArrayHasKey('BasketXML', $data);
-        $this->assertContains($expected, $data['BasketXML'], 'Basket XML does not match the expected output');
+        $this->assertStringContainsString($expected, $data['BasketXML'], 'Basket XML does not match the expected output');
     }
 
     public function testNonXmlBasket()
@@ -329,7 +329,7 @@ class DirectAuthorizeRequestTest extends TestCase
         $this->request->setUseOldBasketFormat(true);
 
         $items = new \Omnipay\Common\ItemBag(array(
-            new \Omnipay\SagePay\Extend\Item(array(
+            new \Omnipay\Opayo\Extend\Item(array(
                 'name' => "Pioneer NSDV99 DVD-Surround Sound System",
                 'quantity' => 3,
                 'price' => 4.35,
@@ -348,7 +348,7 @@ class DirectAuthorizeRequestTest extends TestCase
         $this->request->setUseOldBasketFormat(true);
 
         $items = new \Omnipay\Common\ItemBag(array(
-            new \Omnipay\SagePay\Extend\Item(array(
+            new \Omnipay\Opayo\Extend\Item(array(
                 'name' => "Pioneer NSDV99 DVD-Surround Sound System",
                 'quantity' => 3,
                 'price' => 4.35,
@@ -370,7 +370,7 @@ class DirectAuthorizeRequestTest extends TestCase
         $this->request->setUseOldBasketFormat(true);
 
         $items = new \Omnipay\Common\ItemBag(array(
-            new \Omnipay\SagePay\Extend\Item(array(
+            new \Omnipay\Opayo\Extend\Item(array(
                 'name' => "Pioneer NSDV99 DVD-Surround Sound System",
                 'quantity' => 3,
                 'price' => 4.35,
@@ -390,7 +390,7 @@ class DirectAuthorizeRequestTest extends TestCase
         $this->request->setUseOldBasketFormat(true);
 
         $items = new \Omnipay\Common\ItemBag(array(
-            new \Omnipay\SagePay\Extend\Item(array(
+            new \Omnipay\Opayo\Extend\Item(array(
                 // [] and ::: are reserved
                 'name' => "[SKU-ABC]Pioneer::: NSDV99 DVD-Surround Sound System .-{};_@()",
                 'quantity' => 3,

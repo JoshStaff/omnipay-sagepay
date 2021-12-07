@@ -1,16 +1,16 @@
 <?php
 
-namespace Omnipay\SagePay\Message;
+namespace Omnipay\Opayo\Message;
 
 /**
- * Sage Pay Abstract Request.
- * Base for Sage Pay Server and Sage Pay Direct.
+ * Opayo Abstract Request.
+ * Base for Opayo Server and Opayo Direct.
  */
 use Omnipay\Common\Exception\InvalidRequestException;
-use Omnipay\SagePay\Extend\Item as ExtendItem;
+use Omnipay\Opayo\Extend\Item as ExtendItem;
 use Omnipay\Common\Message\AbstractRequest as OmnipayAbstractRequest;
-use Omnipay\SagePay\Traits\GatewayParamsTrait;
-use Omnipay\SagePay\ConstantsInterface;
+use Omnipay\Opayo\Traits\GatewayParamsTrait;
+use Omnipay\Opayo\ConstantsInterface;
 use Psr\Http\Message\ResponseInterface;
 
 abstract class AbstractRequest extends OmnipayAbstractRequest implements ConstantsInterface
@@ -52,7 +52,7 @@ abstract class AbstractRequest extends OmnipayAbstractRequest implements Constan
      * For MANY services, the URL fragment will be the lower case version
      * of the action.
      *
-     * @return string Sage Pay endpoint service name.
+     * @return string Opayo endpoint service name.
      */
     public function getService()
     {
@@ -105,7 +105,7 @@ abstract class AbstractRequest extends OmnipayAbstractRequest implements Constan
 
     /**
      * Get either the billing or the shipping address from
-     * the card object, mapped to Sage Pay field names.
+     * the card object, mapped to Opayo field names.
      *
      * @param string $type 'Billing' or 'Shipping'
      * @return array
@@ -114,7 +114,7 @@ abstract class AbstractRequest extends OmnipayAbstractRequest implements Constan
     {
         $card = $this->getCard();
 
-        // Mapping is Sage Pay name => Omnipay Name
+        // Mapping is Opayo name => Omnipay Name
 
         $mapping = [
             'Firstnames'    => 'FirstName',
@@ -130,8 +130,8 @@ abstract class AbstractRequest extends OmnipayAbstractRequest implements Constan
 
         $data = [];
 
-        foreach ($mapping as $sagepayName => $omnipayName) {
-            $data[$sagepayName] = call_user_func([$card, 'get' . $type . $omnipayName]);
+        foreach ($mapping as $opayoName => $omnipayName) {
+            $data[$opayoName] = call_user_func([$card, 'get' . $type . $omnipayName]);
         }
 
         // The state must not be set for non-US countries.
@@ -293,7 +293,7 @@ abstract class AbstractRequest extends OmnipayAbstractRequest implements Constan
     }
 
     /**
-     * Use this flag to indicate you wish to have a token generated and stored in the Sage Pay
+     * Use this flag to indicate you wish to have a token generated and stored in the Opayo
      * database and returned to you for future use.
      * Values set in constants CREATE_TOKEN_*
      *
@@ -331,7 +331,7 @@ abstract class AbstractRequest extends OmnipayAbstractRequest implements Constan
 
     /**
      * An optional flag to indicate if you wish to continue to store the
-     * Token in the SagePay token database for future use.
+     * Token in the Opayo token database for future use.
      * Values set in contants SET_TOKEN_*
      *
      * Note: this is just an override method. It is best to leave this unset,
@@ -455,9 +455,9 @@ abstract class AbstractRequest extends OmnipayAbstractRequest implements Constan
     }
 
     /**
-     * Filters out any characters that SagePay does not support from the item name.
+     * Filters out any characters that Opayo does not support from the item name.
      *
-     * Believe it or not, SagePay actually have separate rules for allowed characters
+     * Believe it or not, Opayo actually have separate rules for allowed characters
      * for item names and discount names, hence the need for two separate methods.
      *
      * @param string $name
@@ -474,7 +474,7 @@ abstract class AbstractRequest extends OmnipayAbstractRequest implements Constan
     }
 
     /**
-     * Filters out any characters that SagePay does not support from the item name for
+     * Filters out any characters that Opayo does not support from the item name for
      * the non-xml basket integration
      *
      * @param string $name
@@ -491,9 +491,9 @@ abstract class AbstractRequest extends OmnipayAbstractRequest implements Constan
     }
 
     /**
-     * Filters out any characters that SagePay does not support from the discount name.
+     * Filters out any characters that Opayo does not support from the discount name.
      *
-     * Believe it or not, SagePay actually have separate rules for allowed characters
+     * Believe it or not, Opayo actually have separate rules for allowed characters
      * for item names and discount names, hence the need for two separate methods.
      *
      * @param string $name

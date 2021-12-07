@@ -1,13 +1,16 @@
 <?php
 
-namespace Omnipay\SagePay\Message;
+namespace Omnipay\Opayo\Message;
 
 use Omnipay\Common\Message\RequestInterface;
 use Omnipay\Tests\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 class ResponseTest extends TestCase
 {
-    public function setUp()
+    use ProphecyTrait;
+
+    public function setUp(): void
     {
         $this->getMockRequest()->shouldReceive('getTransactionId')->andReturn('123456');
     }

@@ -1,17 +1,17 @@
 <?php
 
-namespace Omnipay\SagePay\Message;
+namespace Omnipay\Opayo\Message;
 
 use Omnipay\Tests\TestCase;
 
 class SharedRepeatAuthorizeRequestTest extends TestCase
 {
     /**
-     * @var \Omnipay\SagePay\Message\DirectRepeatAuthorizeRequest $request
+     * @var \Omnipay\Opayo\Message\DirectRepeatAuthorizeRequest $request
      */
     protected $request;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 

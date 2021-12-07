@@ -1,21 +1,21 @@
 <?php
 
-namespace Omnipay\SagePay;
+namespace Omnipay\Opayo;
 
-use Omnipay\SagePay\Message\DirectAuthorizeRequest;
-use Omnipay\SagePay\Message\DirectCompleteAuthorizeRequest;
-use Omnipay\SagePay\Message\DirectPurchaseRequest;
-use Omnipay\SagePay\Message\SharedCaptureRequest;
-use Omnipay\SagePay\Message\SharedVoidRequest;
-use Omnipay\SagePay\Message\SharedAbortRequest;
-use Omnipay\SagePay\Message\SharedRefundRequest;
-use Omnipay\SagePay\Message\SharedRepeatAuthorizeRequest;
-use Omnipay\SagePay\Message\SharedRepeatPurchaseRequest;
-use Omnipay\SagePay\Message\DirectTokenRegistrationRequest;
-use Omnipay\SagePay\Message\SharedTokenRemovalRequest;
+use Omnipay\Opayo\Message\DirectAuthorizeRequest;
+use Omnipay\Opayo\Message\DirectCompleteAuthorizeRequest;
+use Omnipay\Opayo\Message\DirectPurchaseRequest;
+use Omnipay\Opayo\Message\SharedCaptureRequest;
+use Omnipay\Opayo\Message\SharedVoidRequest;
+use Omnipay\Opayo\Message\SharedAbortRequest;
+use Omnipay\Opayo\Message\SharedRefundRequest;
+use Omnipay\Opayo\Message\SharedRepeatAuthorizeRequest;
+use Omnipay\Opayo\Message\SharedRepeatPurchaseRequest;
+use Omnipay\Opayo\Message\DirectTokenRegistrationRequest;
+use Omnipay\Opayo\Message\SharedTokenRemovalRequest;
 
 /**
- * Sage Pay Direct Gateway
+ * Opayo Direct Gateway
  */
 
 class DirectGateway extends AbstractGateway
@@ -24,7 +24,7 @@ class DirectGateway extends AbstractGateway
 
     public function getName()
     {
-        return 'Sage Pay Direct';
+        return 'Opayo Direct';
     }
 
     /**

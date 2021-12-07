@@ -1,6 +1,6 @@
 <?php
 
-namespace Omnipay\SagePay;
+namespace Omnipay\Opayo;
 
 use Omnipay\Tests\GatewayTestCase;
 
@@ -8,7 +8,7 @@ class ServerGatewayTest extends GatewayTestCase
 {
     protected $error_3082_text = '3082 : The Description value is too long.';
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -63,7 +63,7 @@ class ServerGatewayTest extends GatewayTestCase
 
     public function testInheritsDirectGateway()
     {
-        $this->assertInstanceOf('Omnipay\SagePay\DirectGateway', $this->gateway);
+        $this->assertInstanceOf('Omnipay\Opayo\DirectGateway', $this->gateway);
     }
 
     public function testAuthorizeSuccess()
@@ -129,11 +129,9 @@ class ServerGatewayTest extends GatewayTestCase
         $this->assertNull($response->getMessage());
     }
 
-    /**
-     * @expectedException Omnipay\Common\Exception\InvalidResponseException
-     */
     public function testCompleteAuthorizeInvalid()
     {
+        $this->expectException(\Omnipay\Common\Exception\InvalidResponseException::class);
         $response = $this->gateway->completeAuthorize($this->completePurchaseOptions)->send();
     }
 
@@ -190,11 +188,9 @@ class ServerGatewayTest extends GatewayTestCase
         $this->assertNull($response->getMessage());
     }
 
-    /**
-     * @expectedException Omnipay\Common\Exception\InvalidResponseException
-     */
     public function testCompletePurchaseInvalid()
     {
+        $this->expectException(\Omnipay\Common\Exception\InvalidResponseException::class);
         $response = $this->gateway->completePurchase($this->completePurchaseOptions)->send();
     }
 

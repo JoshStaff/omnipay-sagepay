@@ -1,12 +1,12 @@
 <?php
 
-namespace Omnipay\SagePay\Message;
+namespace Omnipay\Opayo\Message;
 
 use Omnipay\Tests\TestCase;
 
 class ServerTokenRegistrationResponseTest extends TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         $this->getMockRequest()->shouldReceive('getTransactionId')->andReturn('123456');
     }
