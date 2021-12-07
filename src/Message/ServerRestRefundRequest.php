@@ -34,7 +34,7 @@ class ServerRestRefundRequest extends AbstractRestRequest
         $data['transactionType'] = $this->getTxType();
         $data['vendorTxCode'] = $this->getTransactionId();
         $data['description'] = $this->getDescription();
-        $data['amount'] = (int) $this->getAmount();
+        $data['amount'] = $this->getAmountInteger();
         // $data['currency'] = $this->getCurrency();
         $data['referenceTransactionId'] = $this->getReferenceTransactionId();
 
