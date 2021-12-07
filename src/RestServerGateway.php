@@ -3,6 +3,7 @@
 namespace Omnipay\Opayo;
 
 use Omnipay\Opayo\Message\ServerRestAuthorizeRequest;
+use Omnipay\Opayo\Message\ServerRestCaptureRequest;
 use Omnipay\Opayo\Message\ServerRestCompletePurchaseRequest;
 use Omnipay\Opayo\Message\ServerRestMerchantSessionKeyRequest;
 use Omnipay\Opayo\Message\ServerRestPurchaseRequest;
@@ -61,6 +62,17 @@ class RestServerGateway extends ServerGateway
     public function authorize(array $parameters = [])
     {
         return $this->createRequest(ServerRestAuthorizeRequest::class, $parameters);
+    }
+
+    /**
+     * Take payment for ("release") a previously deferred transaction. You can specify an amount to capture up to and
+     * including the original amount of the deferred transaction, but no more. Whether the full amount is captured or
+     * not, only a single release can occur against each deferred transaction, after which the transaction is closed.
+     * You may not perform a partial capture and then come back and attempt to take the rest of the money.
+     */
+    public function capture(array $parameters = [])
+    {
+        return $this->createRequest(ServerRestCaptureRequest::class, $parameters);
     }
 
     /**
