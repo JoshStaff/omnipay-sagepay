@@ -1,9 +1,9 @@
 <?php
 
-namespace Omnipay\SagePay\Message;
+namespace Omnipay\Opayo\Message;
 
 /**
- * Sage Pay REST Server Merchant Session Key Request
+ * Opayo REST Server Merchant Session Key Request
  */
 class ServerRestMerchantSessionKeyRequest extends AbstractRestRequest
 {

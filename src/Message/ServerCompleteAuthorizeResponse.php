@@ -1,11 +1,11 @@
 <?php
 
-namespace Omnipay\SagePay\Message;
+namespace Omnipay\Opayo\Message;
 
 use Omnipay\Common\Message\RequestInterface;
 
 /**
- * Sage Pay Server Complete Authorize Response
+ * Opayo Server Complete Authorize Response
  * DEPRECATED - use $gateway->notify()
  */
 class ServerCompleteAuthorizeResponse extends Response
@@ -28,9 +28,9 @@ class ServerCompleteAuthorizeResponse extends Response
     }
 
     /**
-     * Confirm (Sage Pay Server only)
+     * Confirm (Opayo Server only)
      *
-     * Notify Sage Pay you received the payment details and wish to confirm the payment, and
+     * Notify Opayo you received the payment details and wish to confirm the payment, and
      * provide a URL to forward the customer to.
      *
      * @param string URL to forward the customer to. Note this is different to your standard
@@ -43,9 +43,9 @@ class ServerCompleteAuthorizeResponse extends Response
     }
 
     /**
-     * Error (Sage Pay Server only)
+     * Error (Opayo Server only)
      *
-     * Notify Sage Pay you received the payment details but there was an error and the payment
+     * Notify Opayo you received the payment details but there was an error and the payment
      * cannot be completed. Error should be called rarely, and only when something unforseen
      * has happened on your server or database.
      *
@@ -59,9 +59,9 @@ class ServerCompleteAuthorizeResponse extends Response
     }
 
     /**
-     * Invalid (Sage Pay Server only)
+     * Invalid (Opayo Server only)
      *
-     * Notify Sage Pay you received the payment details but they were invalid and the payment
+     * Notify Opayo you received the payment details but they were invalid and the payment
      * cannot be completed. Invalid should be called if you are not happy with the contents
      * of the POST, such as the MD5 hash signatures did not match or you do not wish to proceed
      * with the order.
@@ -76,21 +76,21 @@ class ServerCompleteAuthorizeResponse extends Response
     }
 
     /**
-     * Respond to SagePay confirming or rejecting the payment.
+     * Respond to Opayo confirming or rejecting the payment.
      *
-     * Sage Pay Server does things backwards compared to every other gateway (including Sage Pay
+     * Opayo Server does things backwards compared to every other gateway (including Opayo
      * Direct). The return URL is called by their server, and they expect you to confirm receipt
      * and then pass a URL for them to forward the customer to.
      *
      * Because of this, an extra step is required. In your return controller, after calling
      * $gateway->completePurchase(), you should attempt to process the payment. You must then call
-     * either $response->confirm(), $response->error() or $response->invalid() to notify Sage Pay
+     * either $response->confirm(), $response->error() or $response->invalid() to notify Opayo
      * whether to complete the payment or not, and provide a URL to forward the customer to.
      *
-     * Keep in mind your original confirmPurchase() script is being called by Sage Pay, not
+     * Keep in mind your original confirmPurchase() script is being called by Opayo, not
      * the customer.
      *
-     * @param string The status to send to Sage Pay, either OK, INVALID or ERROR.
+     * @param string The status to send to Opayo, either OK, INVALID or ERROR.
      * @param string URL to forward the customer to. Note this is different to your standard
      *               return controller action URL.
      * @param string Optional human readable reasons for accepting the transaction.

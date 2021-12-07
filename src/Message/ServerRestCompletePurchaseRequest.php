@@ -1,12 +1,12 @@
 <?php
 
-namespace Omnipay\SagePay\Message;
+namespace Omnipay\Opayo\Message;
 
 use Omnipay\Common\Exception\InvalidResponseException;
-use Omnipay\SagePay\Message\ServerRestCompleteResponse;
+use Omnipay\Opayo\Message\ServerRestCompleteResponse;
 
 /**
- * Sage Pay REST Complete Purchase Request.
+ * Opayo REST Complete Purchase Request.
  */
 class ServerRestCompletePurchaseRequest extends AbstractRestRequest
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace Omnipay\SagePay\Message;
+namespace Omnipay\Opayo\Message;
 
 /**
- * Sage Pay Shared Abort Request
+ * Opayo Shared Abort Request
  */
 class SharedAbortRequest extends SharedVoidRequest
 {

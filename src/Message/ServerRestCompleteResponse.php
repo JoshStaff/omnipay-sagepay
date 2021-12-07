@@ -1,9 +1,9 @@
 <?php
 
-namespace Omnipay\SagePay\Message;
+namespace Omnipay\Opayo\Message;
 
 /**
- * Sage Pay REST Server Complete Response
+ * Opayo REST Server Complete Response
  */
 class ServerRestCompleteResponse extends RestResponse
 {
@@ -13,6 +13,6 @@ class ServerRestCompleteResponse extends RestResponse
      */
     public function isSuccessful()
     {
-        return strtoupper($this->get3DSecureStatus() ?? $this->getStatus()) === static::SAGEPAY_STATUS_AUTHENTICATED;
+        return strtoupper($this->get3DSecureStatus() ?? $this->getStatus()) === static::OPAYO_STATUS_AUTHENTICATED;
     }
 }

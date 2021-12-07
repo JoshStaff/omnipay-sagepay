@@ -1,10 +1,10 @@
 <?php
 
-namespace Omnipay\SagePay\Traits;
+namespace Omnipay\Opayo\Traits;
 
 //use Omnipay\Common\Exception\InvalidResponseException;
 //use Omnipay\Common\Message\NotificationInterface;
-//use Omnipay\SagePay\Message\Response;
+//use Omnipay\Opayo\Message\Response;
 
 /**
  * Parameters that can be set at the gateway class, and so
@@ -103,7 +103,7 @@ trait GatewayParamsTrait
     }
 
     /**
-     * Set language to instruct sagepay, on which language will be seen
+     * Set language to instruct Opayo, on which language will be seen
      * on payment pages.
      *
      * @param string $value ISO 639 alpha-2 character language code.
@@ -203,7 +203,7 @@ trait GatewayParamsTrait
     }
 
     /**
-     * @return string|null Encryption key for Sage Pay Form
+     * @return string|null Encryption key for Opayo Form
      */
     public function getEncryptionKey()
     {
@@ -211,7 +211,7 @@ trait GatewayParamsTrait
     }
 
     /**
-     * @param string $value Encryption key for Sage Pay Form; aka form password
+     * @param string $value Encryption key for Opayo Form; aka form password
      * @return $this
      */
     public function setEncryptionKey($value)

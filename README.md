@@ -1,6 +1,6 @@
-# Omnipay: Sage Pay
+# Omnipay: Opayo
 
-**Sage Pay driver for the Omnipay PHP payment processing library**
+**Opayo driver for the Omnipay PHP payment processing library**
 
 [![Build Status](https://travis-ci.org/thephpleague/omnipay-sagepay.png?branch=master)](https://travis-ci.org/thephpleague/omnipay-sagepay)
 [![Latest Stable Version](https://poser.pugx.org/omnipay/sagepay/version.png)](https://packagist.org/packages/omnipay/sagepay)
@@ -8,8 +8,8 @@
 
 [Omnipay](https://github.com/thephpleague/omnipay) is a framework agnostic,
 multi-gateway payment processing library for PHP.
-This package implements Sage Pay support for Omnipay.
-This version supports PHP ^5.6 and PHP ^7.
+This package implements Opayo (formerly known as Sage Pay) support for Omnipay.
+This version supports PHP ^7.2 and PHP ^8.
 
 This is the `master` branch of Omnipay, handling Omnipay version `3.x`.
 For the `2.x` branch, please visit https://github.com/thephpleague/omnipay-sagepay/tree/2.x
@@ -19,25 +19,25 @@ Table of Contents
 
 <!-- TOC -->
 
-- [Omnipay: Sage Pay](#omnipay-sage-pay)
+- [Omnipay: Opayo](#omnipay-opayo)
 - [Installation](#installation)
 - [Basic Usage](#basic-usage)
 - [Supported Methods](#supported-methods)
-    - [Sage Pay Direct Methods](#sage-pay-direct-methods)
+    - [Opayo Pay Direct Methods](#opayo-direct-methods)
         - [Direct Authorize/Purchase](#direct-authorizepurchase)
             - [Redirect (3D Secure)](#redirect-3d-secure)
             - [Redirect Return](#redirect-return)
         - [Direct Create Card](#direct-create-card)
-    - [Sage Pay Server Methods](#sage-pay-server-methods)
+    - [Opayo Server Methods](#opayo-server-methods)
         - [Server Gateway](#server-gateway)
         - [Server Authorize/Purchase](#server-authorizepurchase)
         - [Server Create Card](#server-create-card)
         - [Server Notification Handler](#server-notification-handler)
-    - [Sage Pay Form Methods](#sage-pay-form-methods)
+    - [Opayo Form Methods](#opayo-form-methods)
         - [Form Authorize](#form-authorize)
         - [Form completeAuthorize](#form-completeauthorize)
         - [Form Purchase](#form-purchase)
-    - [Sage Pay Shared Methods (Direct and Server)](#sage-pay-shared-methods-direct-and-server)
+    - [Opayo Shared Methods (Direct and Server)](#opayo-shared-methods-direct-and-server)
         - [Repeat Authorize/Purchase](#repeat-authorizepurchase)
         - [Capture](#capture)
         - [Delete Card](#delete-card)
@@ -61,7 +61,7 @@ To install, simply add it to your `composer.json` file:
 ```json
 {
     "require": {
-        "omnipay/sagepay": "~3.0"
+        "omnipay/opayo": "~3.0"
     }
 }
 ```
@@ -75,18 +75,18 @@ And run composer to update your dependencies:
 
 The following gateways are provided by this package:
 
-* SagePay_Direct
-* SagePay_Server
-* SagePay_Form
+* Opayo_Direct
+* Opayo_Server
+* Opayo_Form
 
 For general Omnipay usage instructions, please see the main
 [Omnipay](https://github.com/thephpleague/omnipay) repository.
 
 # Supported Methods
 
-## Sage Pay Direct Methods
+## Opayo Direct Methods
 
-Sage Pay Direct is a server-to-server protocol, with all credit card details
+Opayo Direct is a server-to-server protocol, with all credit card details
 needing to pass through your application for forwarding on to the gateway.
 You must be aware of the PCI implications of handling credit card details
 if using this API.
@@ -107,7 +107,7 @@ use Omnipay\Common\CreditCard;
 
 // Create the gateway object.
 
-$gateway = OmniPay::create('SagePay\Direct')->initialize([
+$gateway = OmniPay::create('Opayo\Direct')->initialize([
     'vendor' => 'vendorname',
     'testMode' => true,
 ]);
@@ -139,7 +139,7 @@ $requestMessage = $gateway->purchase([
     // If 3D Secure is enabled, then provide a return URL for
     // when the user comes back from 3D Secure authentication.
 
-    'returnUrl' => 'https://example.co.uk/sagepay-complete',
+    'returnUrl' => 'https://example.co.uk/opayo-complete',
 ]);
 
 // Send the request message.
@@ -198,13 +198,13 @@ If you want to authorize an amount on the card *and* get a cardReference
 for repeated use of the card, then use the `authorize()` method with the
 `createToken` flag set.
 
-Sample code using Sage Pay Direct to create a card reference:
+Sample code using Opayo Direct to create a card reference:
 
 ```php
 use Omnipay\Omnipay;
 use Omnipay\CreditCard;
 
-$gateway = OmniPay::create('SagePay\Direct');
+$gateway = OmniPay::create('Opayo\Direct');
 
 $gateway->setVendor('your-vendor-code');
 $gateway->setTestMode(true); // For test account
@@ -243,13 +243,13 @@ if ($response->isSuccessful()) {
 }
 ```
 
-## Sage Pay Server Methods
+## Opayo Server Methods
 
-Sage Pay Server captures any credit card details in forms hosted by the
-Sage Pay gateway, either by sending the user to the gateway or loading the
+Opayo Server captures any credit card details in forms hosted by the
+Opayo gateway, either by sending the user to the gateway or loading the
 hosted forms in an iframe. This is the preferred and safest API to use.
 
-Sage Pay Server uses your IP address to authenticate backend access to the
+Opayo Server uses your IP address to authenticate backend access to the
 gateway, and it also needs to a public URL that it can send back-channel
 notifications to. This makes development on a localhost server difficult.
 
@@ -261,7 +261,7 @@ notifications to. This makes development on a localhost server difficult.
 
 ### Server Gateway
 
-All Sage Pay Server methods start by creating the gateway object, which we
+All Opayo Server methods start by creating the gateway object, which we
 will store in `$gateway` here. Note there are no secrets or passwords that need
 to be set, as the gateway uses your server's IP address as its main method of
 authenticating your application.
@@ -271,7 +271,7 @@ The gateway object is minimally created like this:
 ```php
 use Omnipay\Omnipay;
 
-$gateway = OmniPay::create('SagePay\Server');
+$gateway = OmniPay::create('Opayo\Server');
 
 $gateway->setVendor('your-vendor-code');
 $gateway->setTestMode(true); // For a test account
@@ -395,7 +395,7 @@ if ($response->isSuccessful()) {
     // If a cardReference was provided, then only the CVV will be asked for.
     // 3D Secure will be performed here too, if enabled.
     // Once the user is redirected to the gateway, the results will be POSTed
-    // to the [notification handler](#sage-pay-server-notification-handler).
+    // to the [notification handler](#opayo-server-notification-handler).
     // The handler will then inform the gateway where to finally return the user
     // to on the merchant site.
 
@@ -404,17 +404,17 @@ if ($response->isSuccessful()) {
     // Something went wrong; get the message.
     // The error may be a simple validation error on the address details.
     // Catch those and allow the user to correct the details and submit again.
-    // This is a particular pain point of Sage Pay Server.
+    // This is a particular pain point of Opayo Server.
     $reason = $response->getMessage();
 }
 ```
 
 ### Server Create Card
 
-When creating a cardReference, for Sage Pay Server the reference will be available
+When creating a cardReference, for Opayo Server the reference will be available
 only in the notification callback.
 
-Sample code using Sage Pay Server to create a card reference:
+Sample code using Opayo Server to create a card reference:
 
 ```php
 // The transaction ID is used to store the result in the notify callback.
@@ -431,7 +431,7 @@ $request = $gateway->createCard([
 $response = $request->send();
 
 if ($response->isSuccessful()) {
-    // Should never happen for Sage Pay Server, since the user will always
+    // Should never happen for Opayo Server, since the user will always
     // be asked to go off-site to enter their credit card details.
 } elseif ($response->isRedirect()) {
     // Redirect to offsite payment gateway to capture the users credit card
@@ -460,12 +460,12 @@ to break out of the iframe.
 
 ### Server Notification Handler
 
-> **NOTE:** The notification handler was previously handled by the SagePay_Server `completeAuthorize`,
+> **NOTE:** The notification handler was previously handled by the Opayo_Server `completeAuthorize`,
   `completePurchase` and `completeRegistration` methods.
   The notification handler replaces all of these.
 
-The `SagePay_Server` gateway uses a notification callback to receive the results of a payment or authorization.
-Sage Pay Direct does not use the notification handler.
+The `Opayo_Server` gateway uses a notification callback to receive the results of a payment or authorization.
+Opayo Direct does not use the notification handler.
 
 Unlike many newer gateways, this notification handler is not just an optional callback
 providing an additional channel for events.
@@ -474,8 +474,8 @@ It is *required* for the Server gateway, and not used for the direct gateway at 
 The URL for the notification handler is set in the authorize or payment message:
 
 ```php
-// The Server response will be a redirect to the Sage Pay CC form.
-// This is a Sage Pay Server Purchase request.
+// The Server response will be a redirect to the Opayo CC form.
+// This is a Opayo Server Purchase request.
 
 $transactionId = {create a unique transaction id};
 
@@ -504,7 +504,7 @@ $response = $gateway->purchase([
 // retrievable by `$transactionId`.
 
 if ($response->isRedirect()) {
-    // Go to Sage Pay to enter CC details.
+    // Go to Opayo to enter CC details.
     // While your user is there, the notification handler will be called
     // to accept the result and provide the final URL for the user.
 
@@ -517,17 +517,17 @@ Your notification handler needs to do four things:
 1. Look up the saved transaction in the database to retrieve the `securityKey`.
 2. Validate the signature of the received notification to protect against tampering.
 3. Update your saved transaction with the results.
-4. Respond to Sage Pay to indicate that you accept the result, reject the result or don't
+4. Respond to Opayo to indicate that you accept the result, reject the result or don't
    believe the notification was valid.
-   Also tell Sage Pay where to send the user next.
+   Also tell Opayo where to send the user next.
 
 This is a back-channel (server-to-server), so has no access to the end user's session.
 
 The acceptNotification gateway is set up simply.
-The `$request` will capture the POST data sent by Sage Pay:
+The `$request` will capture the POST data sent by Opayo:
 
 ```php
-$gateway = Omnipay\Omnipay::create('SagePay_Server');
+$gateway = Omnipay\Omnipay::create('Opayo_Server');
 $gateway->setVendor('your-vendor-name');
 $gateway->setTestMode(true); // To access your test account.
 $notifyRequest = $gateway->acceptNotification();
@@ -559,7 +559,7 @@ $notifyRequest->setSecurityKey($securityKey);
 $notifyRequest->setTransactionReference($transactionReference);
 
 if (! $notifyRequest->isValid()) {
-    // Respond to Sage Pay indicating we are not accepting anything about this message.
+    // Respond to Opayo indicating we are not accepting anything about this message.
     // You might want to log `$request->getData()` first, for later analysis.
 
     $notifyRequest->invalid($nextUrl, 'Signature not valid - goodbye');
@@ -575,12 +575,12 @@ $notifyRequest->error($nextUrl, 'This transaction does not exist on the system')
 ```
 
 > **Note:** it has been observed that the same notification message may be sent
-  by Sage Pay multiple times.
+  by Opayo multiple times.
   If this happens, then return the same response you sent the first time.
   So if you have confirmed a successful payment, then if you get another
   identical notification for the transaction, then return `confirm()` again.
 
-If you accept the notification, then you can update your local records and let Sage Pay know:
+If you accept the notification, then you can update your local records and let Opayo know:
 
 ```php
 // All raw data - just log it for later analysis:
@@ -610,12 +610,12 @@ if ($notifyRequest->getTxType() === $notifyRequest::TXTYPE_TOKEN) {
     $cardReference = $notifyRequest->getCardReference();
 }
 
-// Now let Sage Pay know you have accepted and saved the result:
+// Now let Opayo know you have accepted and saved the result:
 
 $notifyRequest->confirm($nextUrl);
 ```
 
-The `$nextUrl` is where you want Sage Pay to send the user to next.
+The `$nextUrl` is where you want Opayo to send the user to next.
 It will often be the same URL whether the transaction was approved or not,
 since the result will be safely saved in the database.
 
@@ -642,9 +642,9 @@ You must return it with a `200` HTTP Status Code:
 $bodyPayload = getResponseBody($status, $nextUrl, $detail = null);
 ```
 
-## Sage Pay Form Methods
+## Opayo Form Methods
 
-Sage Pay Form requires neither a server-to-server back-channel nor
+Opayo Form requires neither a server-to-server back-channel nor
 IP-based security.
 It does not require pre-registration of a transaction, so is ideal for
 a speculative "pay now" button on a page for instant purchases of a
@@ -658,7 +658,7 @@ The result is returned to the merchant site also through a client-side
 encrypted message.
 
 Capturing and voiding `Form` transactions is a manual process performed
-in the "My Sage Pay" administration panel.
+in the "My Opayo" administration panel.
 
 Supported functions are:
 
@@ -671,14 +671,14 @@ The authorization is intialized in a similar way to a `Server` payment,
 but with an `encryptionKey`:
 
 ```php
-$gateway = OmniPay::create('SagePay\Form')->initialize([
+$gateway = OmniPay::create('Opayo\Form')->initialize([
     'vendor' => 'vendorname',
     'testMode' => true,
     'encryptionKey' => 'abcdef1212345678',
 ]);
 ```
 
-The `encryptionKey` is generated in "My Sage Pay" when logged in as the administrator.
+The `encryptionKey` is generated in "My Opayo" when logged in as the administrator.
 
 Note that this gateway driver will assume all input data (names, addresses etc.)
 are UTF-8 encoded.
@@ -765,10 +765,10 @@ return a success status.
 This is the same as `authorize()`, but the `purchase()` request is used instead,
 and the `completePurchase()` request is used to complete the transaction on return.
 
-## Sage Pay Shared Methods (Direct and Server)
+## Opayo Shared Methods (Direct and Server)
 
 Note: these functions do not work for the `Form` API.
-These actions for `Sage Pay Form` must be performed manually through the "My Sage Pay"
+These actions for `Opayo Form` must be performed manually through the "My Opayo"
 admin panel.
 
 * `capture()`
@@ -882,9 +882,9 @@ This is one of the simpler messages:
 use Omnipay\Omnipay;
 use Omnipay\CreditCard;
 
-$gateway = OmniPay::create('SagePay\Direct');
+$gateway = OmniPay::create('Opayo\Direct');
 // or
-$gateway = OmniPay::create('SagePay\Server');
+$gateway = OmniPay::create('Opayo\Server');
 
 $gateway->setVendor('your-vendor-code');
 $gateway->setTestMode(true); // For test account
@@ -908,7 +908,7 @@ if ($response->isSuccessful()) {
 
 # Token Billing
 
-Sage Pay Server and Direct support the ability to store a credit card detail on
+Opayo Server and Direct support the ability to store a credit card detail on
 the gateway, referenced by a token, for later use or reuse.
 The token can be single-use, or permanently stored (until its expiry date or
 explicit removal).
@@ -928,13 +928,13 @@ as a part of a transaction:
 If created explicitly, then a CVV can be provided, and that will be stored against the token
 until the token is first used to make a payment. If the cardReference is reused after the first
 payment, then a CVV must be supplied each time (assuming your rules require the CVV to be present).
-If using Sage Pay Server, then the user will be prompted for a CVV on subsequent uses of
+If using Opayo Server, then the user will be prompted for a CVV on subsequent uses of
 the cardReference.
 
 If creating a `token` or `cardReference` with a transaction, then the CVV will never be
 stored against the token.
 
-The transaction response (or notification request for Sage Pay Server) will provide
+The transaction response (or notification request for Opayo Server) will provide
 the generated token. This is accessed using:
 
 * `$response->getToken()` or
@@ -945,8 +945,8 @@ are generated.
 
 ## Using a Token or CardReference
 
-To use a token with Sage Pay Direct, you must leave the credit card details blank in
-the `CreditCard` object. Sage Pay Server does not use the credit card details anyway.
+To use a token with Opayo Direct, you must leave the credit card details blank in
+the `CreditCard` object. Opayo Server does not use the credit card details anyway.
 To use the token as a single-use token, add it to the transaction request like this:
 
 `request->setToken($saved_token);`
@@ -965,15 +965,15 @@ or not, so can be used multiple times.
 
 # Basket format
 
-Sagepay currently supports two different formats for sending cart/item information to them:  
- - [BasketXML](http://www.sagepay.co.uk/support/12/36/protocol-3-00-basket-xml)
- - [Basket](http://www.sagepay.co.uk/support/error-codes/3021-invalid-basket-format-invalid)
+Opayo currently supports two different formats for sending cart/item information to them:
+ - [BasketXML](https://www.opayo.co.uk/support/12/36/protocol-3-00-basket-xml)
+ - [Basket](https://www.opayo.co.uk/support/error-codes/3021-invalid-basket-format-invalid)
 
 These are incompatible with each other, and cannot be both sent in the same transaction.
 *BasketXML* is the most recent format, and is the default used by this driver.
 *Basket* is an older format which may be deprecated one day,
 but is also the only format currently supported by some of the Sage accounting products
-(e.g. Line 50) which can pull transaction data directly from Sage Pay.
+(e.g. Line 50) which can pull transaction data directly from Opayo.
 For applications that require this type of integration, an optional parameter `useOldBasketFormat`
 with a value of `true` can be passed in the driver's `initialize()` method.
 
@@ -981,32 +981,32 @@ with a value of `true` can be passed in the driver's `initialize()` method.
 
 The Basket format can be used for Sage 50 Accounts Software Integration:
 
-> It is possible to integrate your Sage Pay account with Sage Accounting products to ensure you can
+> It is possible to integrate your Opayo account with Sage Accounting products to ensure you can
 > reconcile the transactions on your account within your financial software.
 > If you wish to link a transaction to a specific product record this can be done through the Basket field
   in the transaction registration post.
-> Please note the following integration is not currently available when using BasketXML fields. 
+> Please note the following integration is not currently available when using BasketXML fields.
 > In order for the download of transactions to affect a product record the first entry in a basket line needs
   to be the product code of the item within square brackets. For example:
-  
+
 ```
 4:[PR001]Pioneer NSDV99 DVD-Surround Sound System:1:424.68:74.32:499.00:499.00
 ```
 
-You can either prepend this onto the description or using `\Omnipay\SagePay\Extend\Item` you can use `setProductCode`
-which will take care of pre-pending `[]` for you. 
+You can either prepend this onto the description or using `\Omnipay\Opayo\Extend\Item` you can use `setProductCode`
+which will take care of pre-pending `[]` for you.
 
 # Account Types
 
-Your Sage Pay account will use separate merchant accounts for difference transaction sources.
+Your Opayo account will use separate merchant accounts for difference transaction sources.
 The sources are specified by the `accountType` parameter, and take one of three values:
 
-* "E" Omnipay\SagePay\Message\AbstractRequest::ACCOUNT_TYPE_E (default)  
+* "E" Omnipay\Opayo\Message\AbstractRequest::ACCOUNT_TYPE_E (default)
   For ecommerce transactions, entered in your application by the end user.
-* "M" Omnipay\SagePay\Message\AbstractRequest::ACCOUNT_TYPE_M  
+* "M" Omnipay\Opayo\Message\AbstractRequest::ACCOUNT_TYPE_M
   MOTO transactions taken by telephone or postal forms or faxes, entered by an operator.
   The operator may ask for a CVV when taking a telephone order.
-* "C" Omnipay\SagePay\Message\AbstractRequest::ACCOUNT_TYPE_C  
+* "C" Omnipay\Opayo\Message\AbstractRequest::ACCOUNT_TYPE_C
   For repeat transactions, generated by the merchant site without any human intervention.
 
 The "M" MOTO and "C" account types will also disable any 3D-Secure validation that may
@@ -1020,11 +1020,11 @@ there are some moves to do so.
 # VAT
 
 If you want to include VAT amount in the item array you must use
-`\Omnipay\SagePay\Extend\Item` as follows.
+`\Omnipay\Opayo\Extend\Item` as follows.
 
 ```php
 $items = [
-    [new \Omnipay\SagePay\Extend\Item([
+    [new \Omnipay\Opayo\Extend\Item([
         'name' => 'My Product Name',
         'description' => 'My Product Description',
         'quantity' => 1,
@@ -1044,9 +1044,9 @@ If you want to keep up to date with release announcements, discuss ideas for the
 or ask more detailed questions, there is also a [mailing list](https://groups.google.com/forum/#!forum/omnipay) which
 you can subscribe to.
 
-If you believe you have found a bug, please report it using the [GitHub issue tracker](https://github.com/thephpleague/omnipay-sagepay/issues),
+If you believe you have found a bug, please report it using the [GitHub issue tracker](https://github.com/thephpleague/omnipay-Opayo/issues),
 or better yet, fork the library and submit a pull request.
 
 #References
-- [Sage pay tokens using token management](https://www.opayo.co.uk/file/1171/download-document/sagepaytokensystemprotocolandintegrationguidelinev3.0_0.pdf)
-- [Other sage pay transaction types for Server method](https://developer-eu.elavon.com/docs/opayo-shared-api)
+- [Opayo tokens using token management](https://www.opayo.co.uk/file/1171/download-document/sagepaytokensystemprotocolandintegrationguidelinev3.0_0.pdf)
+- [Other Opayo transaction types for Server method](https://developer-eu.elavon.com/docs/opayo-shared-api)

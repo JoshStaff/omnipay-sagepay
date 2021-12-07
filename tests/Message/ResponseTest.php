@@ -1,6 +1,6 @@
 <?php
 
-namespace Omnipay\SagePay\Message;
+namespace Omnipay\Opayo\Message;
 
 use Omnipay\Common\Message\RequestInterface;
 use Omnipay\Tests\TestCase;

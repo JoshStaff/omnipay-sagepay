@@ -1,6 +1,6 @@
 <?php
 
-namespace Omnipay\SagePay\Message;
+namespace Omnipay\Opayo\Message;
 
 use Omnipay\Tests\TestCase;
 use Mockery as m;
@@ -85,7 +85,7 @@ class ServerCompleteAuthorizeResponseTest extends TestCase
 
     public function testConfirm()
     {
-        $response = m::mock('\Omnipay\SagePay\Message\ServerCompleteAuthorizeResponse')->makePartial();
+        $response = m::mock('\Omnipay\Opayo\Message\ServerCompleteAuthorizeResponse')->makePartial();
         $response->shouldReceive('sendResponse')->once()->with('OK', 'https://www.example.com/', 'detail');
 
         $response->confirm('https://www.example.com/', 'detail');
@@ -93,7 +93,7 @@ class ServerCompleteAuthorizeResponseTest extends TestCase
 
     public function testError()
     {
-        $response = m::mock('\Omnipay\SagePay\Message\ServerCompleteAuthorizeResponse')->makePartial();
+        $response = m::mock('\Omnipay\Opayo\Message\ServerCompleteAuthorizeResponse')->makePartial();
         $response->shouldReceive('sendResponse')->once()->with('ERROR', 'https://www.example.com/', 'detail');
 
         $response->error('https://www.example.com/', 'detail');
@@ -101,7 +101,7 @@ class ServerCompleteAuthorizeResponseTest extends TestCase
 
     public function testInvalid()
     {
-        $response = m::mock('\Omnipay\SagePay\Message\ServerCompleteAuthorizeResponse')->makePartial();
+        $response = m::mock('\Omnipay\Opayo\Message\ServerCompleteAuthorizeResponse')->makePartial();
         $response->shouldReceive('sendResponse')->once()->with('INVALID', 'https://www.example.com/', 'detail');
 
         $response->invalid('https://www.example.com/', 'detail');
@@ -109,7 +109,7 @@ class ServerCompleteAuthorizeResponseTest extends TestCase
 
     public function testSendResponse()
     {
-        $response = m::mock('\Omnipay\SagePay\Message\ServerCompleteAuthorizeResponse')->makePartial();
+        $response = m::mock('\Omnipay\Opayo\Message\ServerCompleteAuthorizeResponse')->makePartial();
         $response->shouldReceive('exitWith')->once()->with("Status=FOO\r\nRedirectUrl=https://www.example.com/");
 
         $response->sendResponse('FOO', 'https://www.example.com/');
@@ -117,7 +117,7 @@ class ServerCompleteAuthorizeResponseTest extends TestCase
 
     public function testSendResponseDetail()
     {
-        $response = m::mock('\Omnipay\SagePay\Message\ServerCompleteAuthorizeResponse')->makePartial();
+        $response = m::mock('\Omnipay\Opayo\Message\ServerCompleteAuthorizeResponse')->makePartial();
         $response->shouldReceive('exitWith')->once()->with("Status=FOO\r\nRedirectUrl=https://www.example.com/\r\nStatusDetail=Bar");
 
         $response->sendResponse('FOO', 'https://www.example.com/', 'Bar');

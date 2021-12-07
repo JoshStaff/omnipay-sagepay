@@ -1,6 +1,6 @@
 <?php
 
-namespace Omnipay\SagePay\Message;
+namespace Omnipay\Opayo\Message;
 
 class ServerTokenRegistrationRequest extends AbstractRequest
 {
