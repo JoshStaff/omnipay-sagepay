@@ -2,6 +2,7 @@
 
 namespace Omnipay\Opayo;
 
+use Omnipay\Opayo\Message\ServerRestAuthorizeRequest;
 use Omnipay\Opayo\Message\ServerRestCompletePurchaseRequest;
 use Omnipay\Opayo\Message\ServerRestMerchantSessionKeyRequest;
 use Omnipay\Opayo\Message\ServerRestPurchaseRequest;
@@ -43,23 +44,37 @@ class RestServerGateway extends ServerGateway
     /**
      * Create merchant session key (MSK).
      */
-    public function createMerchantSessionKey(array $parameters = array())
+    public function createMerchantSessionKey(array $parameters = [])
     {
         return $this->createRequest(ServerRestMerchantSessionKeyRequest::class, $parameters);
     }
 
     /**
+     * Authorize is similar to purchase except that the transaction is deferred - a "shadow" transaction is placed on
+     * the customer's card to reserve the funds needed to make payment, but the money is not actually transferred. The
+     * transaction must then be captured ("released" in Opayo terminology) to actually take the money.
+     *
+     * Opayo will automatically abort any deferred transactions that have not been released after 30 days. However, some
+     * card providers may remove the shadow after 6 days so that the customer can spend those funds elsewhere. You can
+     * also manually abort a deferred transaction if you are unable to fulfil the purchase.
+     */
+    public function authorize(array $parameters = [])
+    {
+        return $this->createRequest(ServerRestAuthorizeRequest::class, $parameters);
+    }
+
+    /**
      * Purchase and handling of return from 3D Secure redirection.
      */
-    public function purchase(array $parameters = array())
+    public function purchase(array $parameters = [])
     {
         return $this->createRequest(ServerRestPurchaseRequest::class, $parameters);
     }
 
     /**
-     * Handle purchase notifcation callback.
+     * Handle purchase notification callback.
      */
-    public function complete(array $parameters = array())
+    public function complete(array $parameters = [])
     {
         return $this->createRequest(ServerRestCompletePurchaseRequest::class, $parameters);
     }
@@ -67,7 +82,7 @@ class RestServerGateway extends ServerGateway
     /**
      * Get transaction information from Opayo.
      */
-    public function getTransaction(array $parameters = array())
+    public function getTransaction(array $parameters = [])
     {
         return $this->createRequest(ServerRestRetrieveTransactionRequest::class, $parameters);
     }
@@ -75,7 +90,7 @@ class RestServerGateway extends ServerGateway
     /**
      * Refund request.
      */
-    public function refund(array $parameters = array())
+    public function refund(array $parameters = [])
     {
         return $this->createRequest(ServerRestRefundRequest::class, $parameters);
     }
@@ -83,7 +98,7 @@ class RestServerGateway extends ServerGateway
     /**
      * Repeat request.
      */
-    public function repeat(array $parameters = array())
+    public function repeat(array $parameters = [])
     {
         return $this->createRequest(ServerRestRepeatRequest::class, $parameters);
     }
@@ -91,7 +106,7 @@ class RestServerGateway extends ServerGateway
     /**
      * Void request.
      */
-    public function void(array $parameters = array())
+    public function void(array $parameters = [])
     {
         return $this->createRequest(ServerRestVoidRequest::class, $parameters);
     }
