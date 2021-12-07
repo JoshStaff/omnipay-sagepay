@@ -2,6 +2,7 @@
 
 namespace Omnipay\Opayo;
 
+use Omnipay\Opayo\Message\ServerRestAbortRequest;
 use Omnipay\Opayo\Message\ServerRestAuthorizeRequest;
 use Omnipay\Opayo\Message\ServerRestCaptureRequest;
 use Omnipay\Opayo\Message\ServerRestCompletePurchaseRequest;
@@ -73,6 +74,16 @@ class RestServerGateway extends ServerGateway
     public function capture(array $parameters = [])
     {
         return $this->createRequest(ServerRestCaptureRequest::class, $parameters);
+    }
+
+    /**
+     * Abort a previously deferred transaction. This cannot be reversed and cannot be for a partial amount. Once the
+     * transaction is aborted, the shadow will be removed from the customer's card so their funds are no longer reserved
+     * and the transaction cannot be captured (released).
+     */
+    public function abort(array $parameters = [])
+    {
+        return $this->createRequest(ServerRestAbortRequest::class, $parameters);
     }
 
     /**
