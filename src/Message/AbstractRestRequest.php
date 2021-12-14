@@ -260,24 +260,33 @@ abstract class AbstractRestRequest extends AbstractRequest implements ConstantsI
     {
         $card = $this->getCard();
 
-        if (is_null($card->getShippingAddress1())) {
-            // If we don't have the required first line, assume no shipping address has been set.
+        $shippingDetails = [
+            'shippingAddress1' => $card->getShippingAddress1(),
+            'shippingAddress2' => $card->getShippingAddress2(),
+            'shippingCity' => $card->getShippingCity(),
+            'shippingPostalCode' => $card->getShippingPostcode(),
+            'shippingState' => $card->getShippingState(),
+            'shippingCountry' => $card->getShippingCountry(),
+        ];
+
+        $shippingDetails = array_filter($shippingDetails, function ($value) {
+            return ! is_null($value);
+        });
+
+        if (empty($shippingDetails)) {
+            // No shipping address components have been supplied, so don't add it to the data.
             // Opayo will default to using the billing address.
             return $data;
         }
 
-        $data['shippingDetails']['recipientFirstName'] = $card->getShippingFirstName();
-        $data['shippingDetails']['recipientLastName'] = $card->getShippingLastName();
-        $data['shippingDetails']['shippingAddress1'] = $card->getShippingAddress1();
-        $data['shippingDetails']['shippingAddress2'] = $card->getShippingAddress2();
-        $data['shippingDetails']['shippingCity'] = $card->getShippingCity();
-        $data['shippingDetails']['shippingPostalCode'] = $card->getShippingPostcode();
-        $data['shippingDetails']['shippingState'] = $card->getShippingState();
-        $data['shippingDetails']['shippingCountry'] = $card->getShippingCountry();
+        $data['shippingDetails'] = $shippingDetails;
 
         if ($data['shippingDetails']['shippingCountry'] !== 'US') {
             $data['shippingDetails']['shippingState'] = '';
         }
+
+        $data['shippingDetails']['recipientFirstName'] = $card->getShippingFirstName();
+        $data['shippingDetails']['recipientLastName'] = $card->getShippingLastName();
 
         return $data;
     }
