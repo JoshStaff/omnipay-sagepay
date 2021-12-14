@@ -64,9 +64,9 @@ class ServerRestPurchaseRequest extends AbstractRestRequest
             $data['customerEmail'] = $card->getEmail();
         }
 
-        // $data['ApplyAVSCV2'] = $this->getApplyAVSCV2() ?: static::APPLY_AVSCV2_DEFAULT;
-        $data['apply3DSecure'] = $this->getApply3DSecure() ?: static::APPLY_3DSECURE_APPLY;
-        // user parent data here and the abstract can provide txtype vendor etc
+        $data['applyAvsCvcCheck'] = $this->getApplyAvsCvcCheck() ?? static::REST_APPLY_AVS_CVC_CHECK_DEFAULT;
+        $data['apply3DSecure'] = $this->getApply3DSecure() ?? static::REST_APPLY_3DSECURE_DEFAULT;
+
         return $data;
     }
 
@@ -87,10 +87,10 @@ class ServerRestPurchaseRequest extends AbstractRestRequest
     {
         $data['paymentMethod']['card']['merchantSessionKey'] = $this->getMerchantSessionKey();
         $data['paymentMethod']['card']['cardIdentifier'] = $this->getCardIdentifier();
-        if (!is_null($this->getTokenReusable())) {
+        if (! is_null($this->getTokenReusable())) {
             $data['paymentMethod']['card']['reusable'] = $this->getTokenReusable();
         }
-        if (!is_null($this->getTokenSave())) {
+        if (! is_null($this->getTokenSave())) {
             $data['paymentMethod']['card']['save'] = $this->getTokenSave();
         }
         return $data;

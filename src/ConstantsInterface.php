@@ -57,6 +57,33 @@ interface ConstantsInterface
     const APPLY_AVSCV2_NO_RULES     = 3;
 
     /**
+     * Supported 3D Secure settings for a RESTful payments integration, used to override default account-level settings.
+     *
+     * - UseMSPSetting - Use default MySagePay settings.
+     * - Force - Apply authentication even if turned off.
+     * - ForceIgnoringRules - Apply authentication but ignore rules.
+     * - Disable - Only use this if you intend to use an SCA Exemption
+     *   (https://developer-eu.elavon.com/docs/opayo/3d-secure-authentication/sca-exemptions)
+     */
+    const REST_APPLY_3DSECURE_DEFAULT = 'UseMSPSetting';
+    const REST_APPLY_3DSECURE_FORCE = 'Force';
+    const REST_APPLY_3DSECURE_FORCE_IGNORING_RULES = 'ForceIgnoringRules';
+    const REST_APPLY_3DSECURE_DISABLE = 'Disable';
+
+    /**
+     * Supported AVS CVS settings for a RESTful payments integration, used to overide default account-level settings
+     *
+     * - UseMSPSetting - Use defailt MySagePay settings.
+     * - Force - Apply authentication even if turned off.
+     * - ForceIgnoringRules - Apply authentication but ignore rules.
+     * - Disable - Disable authentication and rules
+     */
+    const REST_APPLY_AVS_CVC_CHECK_DEFAULT = 'UseMSPSetting';
+    const REST_APPLY_AVS_CVC_CHECK_FORCE = 'Force';
+    const REST_APPLY_AVS_CVC_CHECK_FORCE_IGNORING_RULES = 'ForceIgnoringRules';
+    const REST_APPLY_AVS_CVC_CHECK_DISABLE = 'Disable';
+
+    /**
      * Flag whether to store a cardReference or token for multiple use.
      */
     const STORE_TOKEN_YES   = 1;
