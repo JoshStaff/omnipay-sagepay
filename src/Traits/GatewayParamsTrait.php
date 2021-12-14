@@ -115,7 +115,7 @@ trait GatewayParamsTrait
     }
 
     /**
-     * @return int|null One of APPLY_3DSECURE_*
+     * @return int|string|null One of APPLY_3DSECURE_* or REST_APPLY_3DSECURE_*
      */
     public function getApply3DSecure()
     {
@@ -126,16 +126,35 @@ trait GatewayParamsTrait
      * Whether or not to apply 3D secure authentication.
      *
      * This is ignored for PAYPAL, EUROPEAN PAYMENT transactions.
-     * Values defined in APPLY_3DSECURE_* constant.
+     * Values defined in APPLY_3DSECURE_* or REST_APPLY_3DSECURE_* constants. Only one set will be used depending on the
+     * integration required.
      *
-     * For values see constants APPLY_3DSECURE_*
-     *
-     * @param int $value 0-3
+     * @param int|string $value see constants for possible values
      * @return $this
      */
     public function setApply3DSecure($value)
     {
         return $this->setParameter('apply3DSecure', $value);
+    }
+
+    /**
+     * @return string|null One of REST_APPLY_AVS_CVC_CHECK_*
+     */
+    public function getApplyAvsCvcCheck()
+    {
+        return $this->getParameter('applyAvsCvcCheck');
+    }
+
+    /**
+     * Set whether or not to apply AVS CVC checks.
+     *
+     * Values defined in REST_APPLY_AVS_CVC_CHECK_* constants.
+     *
+     * @param string $value see constants for possible values
+     */
+    public function setApplyAvcCvcCheck($value)
+    {
+        return $this->setParameter('applyAvsCvcCheck', $value);
     }
 
     /**

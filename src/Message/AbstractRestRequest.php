@@ -6,8 +6,6 @@ namespace Omnipay\Opayo\Message;
  * Opayo Abstract Rest Request.
  * Base for Opayo Rest Server.
  */
-use Omnipay\Common\Exception\InvalidRequestException;
-use Omnipay\Opayo\Extend\Item as ExtendItem;
 use Omnipay\Opayo\ConstantsInterface;
 use Psr\Http\Message\ResponseInterface;
 
@@ -205,12 +203,7 @@ abstract class AbstractRestRequest extends AbstractRequest implements ConstantsI
     public function sendData($data)
     {
         // Issue #20 no data values should be null.
-
-        array_walk($data, function (&$value) {
-            if (! isset($value)) {
-                $value = '';
-            }
-        });
+        $data = $this->filterNullData($data);
 
         $httpResponse = $this
             ->httpClient
@@ -267,18 +260,33 @@ abstract class AbstractRestRequest extends AbstractRequest implements ConstantsI
     {
         $card = $this->getCard();
 
-        $data['shippingDetails']['recipientFirstName'] = $card->getShippingFirstName();
-        $data['shippingDetails']['recipientLastName'] = $card->getShippingLastName();
-        $data['shippingDetails']['shippingAddress1'] = $card->getShippingAddress1();
-        $data['shippingDetails']['shippingAddress2'] = $card->getShippingAddress2();
-        $data['shippingDetails']['shippingCity'] = $card->getShippingCity();
-        $data['shippingDetails']['shippingPostalCode'] = $card->getShippingPostcode();
-        $data['shippingDetails']['shippingState'] = $card->getShippingState();
-        $data['shippingDetails']['shippingCountry'] = $card->getShippingCountry();
+        $shippingDetails = [
+            'shippingAddress1' => $card->getShippingAddress1(),
+            'shippingAddress2' => $card->getShippingAddress2(),
+            'shippingCity' => $card->getShippingCity(),
+            'shippingPostalCode' => $card->getShippingPostcode(),
+            'shippingState' => $card->getShippingState(),
+            'shippingCountry' => $card->getShippingCountry(),
+        ];
+
+        $shippingDetails = array_filter($shippingDetails, function ($value) {
+            return ! is_null($value);
+        });
+
+        if (empty($shippingDetails)) {
+            // No shipping address components have been supplied, so don't add it to the data.
+            // Opayo will default to using the billing address.
+            return $data;
+        }
+
+        $data['shippingDetails'] = $shippingDetails;
 
         if ($data['shippingDetails']['shippingCountry'] !== 'US') {
             $data['shippingDetails']['shippingState'] = '';
         }
+
+        $data['shippingDetails']['recipientFirstName'] = $card->getShippingFirstName();
+        $data['shippingDetails']['recipientLastName'] = $card->getShippingLastName();
 
         return $data;
     }
@@ -296,5 +304,18 @@ abstract class AbstractRestRequest extends AbstractRequest implements ConstantsI
         $responseData = json_decode($bodyText, true);
 
         return $responseData;
+    }
+
+    private function filterNullData(array $data)
+    {
+        foreach ($data as $key => $value) {
+            if (is_array($value)) {
+                $data[$key] = $this->filterNullData($value);
+            } elseif (is_null($value)) {
+                unset($data[$key]);
+            }
+        }
+
+        return $data;
     }
 }
