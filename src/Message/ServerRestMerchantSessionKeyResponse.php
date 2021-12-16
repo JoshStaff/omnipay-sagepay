@@ -22,4 +22,12 @@ class ServerRestMerchantSessionKeyResponse extends RestResponse
     {
         return $this->getDataItem('merchantSessionKey');
     }
+
+    /**
+     * @return string|null Expiry date/time in ISO-8601 format, if present
+     */
+    public function getExpiry()
+    {
+        return $this->getDataItem('expiry');
+    }
 }
