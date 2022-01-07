@@ -9,10 +9,11 @@ class ServerRestCompleteResponse extends RestResponse
 {
     /**
      *
-     * @return bool false
+     * @return bool
      */
     public function isSuccessful()
     {
-        return strtoupper($this->get3DSecureStatus() ?? $this->getStatus()) === static::OPAYO_STATUS_AUTHENTICATED;
+        return $this->get3DSecureStatus() === static::REST_3DSECURE_STATUS_AUTHENTICATED
+            || $this->getStatus() === static::OPAYO_STATUS_AUTHENTICATED;
     }
 }
