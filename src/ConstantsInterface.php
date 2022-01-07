@@ -243,6 +243,35 @@ interface ConstantsInterface
     const SECURE3D_STATUS_INVALID       = 'INVALID';
 
     /**
+     * Possible 3DSecure statuses for a RESTful payment integration
+     *
+     * - Ok - Transaction request completed successfully
+     * - Authenticated - 3-D Secure checks carried out and user authenticated correctly.
+     * - NotChecked - 3-D Secure checks were not performed. This indicates that 3-D Secure was either switched off at
+     *   the account level, or disabled at transaction registration with the apply3DSecure set to Disable.
+     * - NotAuthenticated - 3-D Secure authentication checked, but the user failed the authentication.
+     * - Error - Authentication could not be attempted due to data errors or service unavailability in one of the
+     *   parties involved in the check.
+     * - CardNotEnrolled - This means that the card is not in the 3-D Secure scheme.
+     * - IssuerNotEnrolled - This means that the issuer is not part of the 3-D Secure scheme.
+     * - MalformedOrInvalid - This means that there is a problem with creating or receiving the 3D Secure data. These
+     *   should not occur on the live environment.
+     * - AttemptOnly - This means that the cardholder attempted to authenticate themselves but the process did not
+     *   complete. A liability shift may occur for non-Maestro cards, depending on your merchant agreement.
+     * - Incomplete - This means that the 3D Secure authentication was not available (normally at the card issuer site).
+     */
+    const REST_3DSECURE_STATUS_OK                   = 'Ok';
+    const REST_3DSECURE_STATUS_AUTHENTICATED        = 'Authenticated';
+    const REST_3DSECURE_STATUS_NOT_CHECKED          = 'NotChecked';
+    const REST_3DSECURE_STATUS_NOT_AUTHENTICATED    = 'NotAuthenticated';
+    const REST_3DSECURE_STATUS_ERROR                = 'Error';
+    const REST_3DSECURE_STATUS_CARD_NOT_ENROLLED    = 'CardNotEnrolled';
+    const REST_3DSECURE_STATUS_ISSUER_NOT_ENROLLED  = 'IssuerNotEnrolled';
+    const REST_3DSECURE_STATUS_MALFORMED_OR_INVALID = 'MalformedOrInvalid';
+    const REST_3DSECURE_STATUS_ATTEMPT_ONLY         = 'AttemptOnly';
+    const REST_3DSECURE_STATUS_INCOMPLETE           = 'Incomplete';
+
+    /**
      * Raw results for AddressStatus (PayPal only)
      * @var string
      */

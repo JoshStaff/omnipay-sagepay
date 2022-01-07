@@ -199,17 +199,17 @@ trait ResponseRestFieldsTrait
      * This field details the results of the 3D-Secure checks
      * where appropriate.
      *
-     * @return string One of static::SECURE3D_STATUS_*
+     * @return string|null One of static::REST_3DSECURE_STATUS_*
      */
     public function get3DSecureStatus()
     {
         $secure3DResponse = $this->getDataItem('3DSecure');
 
         if (is_array($secure3DResponse) && array_key_exists('status', $secure3DResponse)) {
-            return strtoupper($secure3DResponse['status']);
+            return $secure3DResponse['status'];
         }
 
-        return $secure3DResponse;
+        return null;
     }
 
     /**
