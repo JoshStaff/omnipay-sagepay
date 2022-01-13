@@ -11,4 +11,13 @@ class ServerRestAuthorizeRequest extends ServerRestPurchaseRequest
     {
         return ucfirst(strtolower(static::TXTYPE_DEFERRED));
     }
+
+    /**
+     * @param array $data
+     * @return ServerRestAuthorizeResponse
+     */
+    protected function createResponse($data)
+    {
+        return $this->response = new ServerRestAuthorizeResponse($this, $data);
+    }
 }

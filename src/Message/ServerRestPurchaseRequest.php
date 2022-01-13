@@ -72,7 +72,7 @@ class ServerRestPurchaseRequest extends AbstractRestRequest
 
     /**
      * @param array $data
-     * @return ServerRestPurchaseKeyResponse
+     * @return ServerRestPurchaseResponse
      */
     protected function createResponse($data)
     {

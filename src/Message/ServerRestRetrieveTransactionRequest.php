@@ -26,7 +26,7 @@ class ServerRestRetrieveTransactionRequest extends AbstractRestRequest
 
     /**
      * @param array $data
-     * @return ServerRestPurchaseKeyResponse
+     * @return ServerRestRetrieveTransactionResponse
      */
     protected function createResponse($data)
     {
