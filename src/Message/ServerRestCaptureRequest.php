@@ -15,14 +15,6 @@ class ServerRestCaptureRequest extends AbstractRestRequest
     }
 
     /**
-     * @return string the transaction type
-     */
-    public function getTxType()
-    {
-        return ucfirst(strtolower(static::TXTYPE_RELEASE));
-    }
-
-    /**
      * Instruction data.
      *
      * @return array
@@ -30,7 +22,7 @@ class ServerRestCaptureRequest extends AbstractRestRequest
     public function getData()
     {
         return [
-            'instructionType ' => $this->getTxType(),
+            'instructionType' => static::INSTRUCTION_TYPE_RELEASE,
             'amount' => $this->getAmountInteger(),
         ];
     }

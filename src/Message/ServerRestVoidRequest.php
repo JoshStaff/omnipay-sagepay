@@ -3,7 +3,6 @@
 namespace Omnipay\Opayo\Message;
 
 use Omnipay\Opayo\Message\ServerRestInstructionResponse;
-use Omnipay\Opayo\Message\ServerRestRefundResponse;
 
 /**
  * Opayo REST Server Refund Request
@@ -21,24 +20,15 @@ class ServerRestVoidRequest extends AbstractRestRequest
     }
 
     /**
-     * @return string the transaction type
-     */
-    public function getTxType()
-    {
-        return ucfirst(strtolower(static::TXTYPE_VOID));
-    }
-
-    /**
      * Instruction data.
      *
      * @return array
      */
     public function getData()
     {
-        $data = $this->getBaseData();
-
-        $data['instructionType'] = $this->getTxType();
-        return $data;
+        return [
+            'instructionType' => static::INSTRUCTION_TYPE_VOID,
+        ];
     }
 
     public function getParentServiceReference()
