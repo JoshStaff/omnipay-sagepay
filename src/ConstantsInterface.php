@@ -135,6 +135,13 @@ interface ConstantsInterface
     const TXTYPE_REPEATDEFERRED = 'REPEATDEFERRED';
 
     /**
+     * Instruction types for PI transaction instructions
+     */
+    const INSTRUCTION_TYPE_ABORT   = 'abort';
+    const INSTRUCTION_TYPE_RELEASE = 'release';
+    const INSTRUCTION_TYPE_VOID    = 'void';
+
+    /**
      *
      */
     const SERVICE_SERVER_REGISTER   = 'vspserver-register';
