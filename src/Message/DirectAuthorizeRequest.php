@@ -5,16 +5,15 @@ namespace Omnipay\Opayo\Message;
 /**
  * Opayo Direct Authorize Request
  */
-
 class DirectAuthorizeRequest extends AbstractRequest
 {
     /**
      * @var array Some mapping from Omnipay card brand codes to Opayo card brand codes.
      */
-    protected $cardBrandMap = array(
+    protected $cardBrandMap = [
         'mastercard' => 'MC',
-        'diners_club' => 'DC'
-    );
+        'diners_club' => 'DC',
+    ];
 
     /**
      * @return string the transaction type
@@ -54,10 +53,13 @@ class DirectAuthorizeRequest extends AbstractRequest
 
         $data['VendorData'] = $this->getVendorData();
         $data['VendorTxCode'] = $this->getTransactionId();
-        $data['ClientIPAddress'] = $this->getClientIp();
 
-        $data['ApplyAVSCV2'] = $this->getApplyAVSCV2() ?: static::APPLY_AVSCV2_DEFAULT;
-        $data['Apply3DSecure'] = $this->getApply3DSecure() ?: static::APPLY_3DSECURE_APPLY;
+        if ($clientIp = $this->getClientIp()) {
+            $data['ClientIPAddress'] = $clientIp;
+        }
+
+        $data['ApplyAVSCV2'] = $this->getApplyAVSCV2() ? : static::APPLY_AVSCV2_DEFAULT;
+        $data['Apply3DSecure'] = $this->getApply3DSecure() ? : static::APPLY_3DSECURE_APPLY;
 
         if ($this->getReferrerId()) {
             $data['ReferrerID'] = $this->getReferrerId();
@@ -77,16 +79,16 @@ class DirectAuthorizeRequest extends AbstractRequest
             $data['CustomerEMail'] = $card->getEmail();
         }
 
-        if ((bool)$this->getUseOldBasketFormat()) {
+        if ((bool) $this->getUseOldBasketFormat()) {
             $basket = $this->getItemDataNonXML();
 
-            if (!empty($basket)) {
+            if (! empty($basket)) {
                 $data['Basket'] = $basket;
             }
         } else {
             $basketXML = $this->getItemData();
 
-            if (!empty($basketXML)) {
+            if (! empty($basketXML)) {
                 $data['BasketXML'] = $basketXML;
             }
         }
@@ -138,13 +140,13 @@ class DirectAuthorizeRequest extends AbstractRequest
      * @param array $data The data collected so far (to be added to).
      * @return array
      */
-    public function getTokenData($data = array())
+    public function getTokenData($data = [])
     {
         // Are there token details to add?
 
         if ($this->getToken() || $this->getCardReference()) {
             // A card token or reference has been provided.
-            $data['Token'] = $this->getToken() ?: $this->getCardReference();
+            $data['Token'] = $this->getToken() ? : $this->getCardReference();
 
             // If we don't have a StoreToken override, then set it according to
             // whether we are dealing with a token or a cardReference.
@@ -158,7 +160,7 @@ class DirectAuthorizeRequest extends AbstractRequest
                 // We consider a cardReference as long term, and a token
                 // as single-use.
 
-                if ((bool)$this->getCardReference()) {
+                if ((bool) $this->getCardReference()) {
                     $data['StoreToken'] = static::STORE_TOKEN_YES;
                 }
             } elseif ($storeToken !== static::STORE_TOKEN_YES
@@ -166,7 +168,7 @@ class DirectAuthorizeRequest extends AbstractRequest
             ) {
                 // A store token to treat as a boolean has been supplied.
 
-                $data['StoreToken'] = (bool)$storeToken
+                $data['StoreToken'] = (bool) $storeToken
                     ? static::STORE_TOKEN_YES
                     : static::STORE_TOKEN_NO;
             } else {
@@ -186,7 +188,7 @@ class DirectAuthorizeRequest extends AbstractRequest
      * @param array $data The data collected so far (to be added to).
      * @return array
      */
-    public function getCardData($data = array())
+    public function getCardData($data = [])
     {
         // Validate the card details (number, date, cardholder name).
         $this->getCard()->validate();
@@ -216,7 +218,7 @@ class DirectAuthorizeRequest extends AbstractRequest
         // If we want the card details to be saved on the gateway as a
         // token or card reference, then request for that to be done.
 
-        $createCard = $this->getCreateToken() ?: $this->getCreateCard();
+        $createCard = $this->getCreateToken() ? : $this->getCreateCard();
 
         if ($createCard !== null) {
             $data['CreateToken'] = $createCard ? static::CREATE_TOKEN_YES : static::CREATE_TOKEN_NO;
