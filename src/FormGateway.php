@@ -1,20 +1,20 @@
 <?php
 
-namespace Omnipay\Opayo;
+namespace Omnipay\SagePay;
 
-use Omnipay\Opayo\Message\Form\AuthorizeRequest;
-use Omnipay\Opayo\Message\Form\CompleteAuthorizeRequest;
-use Omnipay\Opayo\Message\Form\CompletePurchaseRequest;
-use Omnipay\Opayo\Message\Form\PurchaseRequest;
+use Omnipay\SagePay\Message\Form\AuthorizeRequest;
+use Omnipay\SagePay\Message\Form\CompleteAuthorizeRequest;
+use Omnipay\SagePay\Message\Form\CompletePurchaseRequest;
+use Omnipay\SagePay\Message\Form\PurchaseRequest;
 
 /**
- * Opayo Server Gateway
+ * Sage Pay Server Gateway
  */
 class FormGateway extends AbstractGateway
 {
     public function getName()
     {
-        return 'Opayo Form';
+        return 'Sage Pay Form';
     }
 
     /**

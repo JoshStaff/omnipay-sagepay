@@ -1,16 +1,16 @@
 <?php
 
-namespace Omnipay\Opayo\Message;
+namespace Omnipay\SagePay\Message;
 
 use Symfony\Component\HttpFoundation\Request as HttpRequest;
 use Omnipay\Common\Exception\InvalidResponseException;
 use Omnipay\Common\Message\NotificationInterface;
 use Omnipay\Common\Http\ClientInterface;
-use Omnipay\Opayo\Traits\ResponseFieldsTrait;
-use Omnipay\Opayo\Traits\ServerNotifyTrait;
+use Omnipay\SagePay\Traits\ResponseFieldsTrait;
+use Omnipay\SagePay\Traits\ServerNotifyTrait;
 
 /**
- * Opayo Server Notification.
+ * Sage Pay Server Notification.
  * The gateway will send the results of Server transactions here.
  */
 class ServerNotifyRequest extends AbstractRequest implements NotificationInterface
@@ -109,7 +109,7 @@ class ServerNotifyRequest extends AbstractRequest implements NotificationInterfa
     /**
      * Confirm
      *
-     * Notify Opayo you received the payment details and wish to confirm the payment.
+     * Notify Sage Pay you received the payment details and wish to confirm the payment.
      *
      * @param string URL to forward the customer to.
      * @param string Optional human readable reasons for accepting the transaction.
@@ -135,7 +135,7 @@ class ServerNotifyRequest extends AbstractRequest implements NotificationInterfa
     /**
      * Error
      *
-     * Notify Opayo you received the payment details but there was an error and the payment
+     * Notify Sage Pay you received the payment details but there was an error and the payment
      * cannot be completed.
      *
      * @param string URL to foward the customer to.
@@ -163,7 +163,7 @@ class ServerNotifyRequest extends AbstractRequest implements NotificationInterfa
     /**
      * Invalid
      *
-     * Notify Opayo you received *something* but the details were invalid and no payment
+     * Notify Sage Pay you received *something* but the details were invalid and no payment
      * cannot be completed. Invalid should be called if you are not happy with the contents
      * of the POST, such as the MD5 hash signatures did not match or you do not wish to proceed
      * with the order.
@@ -179,7 +179,7 @@ class ServerNotifyRequest extends AbstractRequest implements NotificationInterfa
     /**
      * Construct the response body.
      *
-     * @param string The status to send to Opayo, one of static::RESPONSE_STATUS_*
+     * @param string The status to send to Sage Pay, one of static::RESPONSE_STATUS_*
      * @param string URL to forward the customer to.
      * @param string Optional human readable reason for this response.
      */
@@ -198,9 +198,9 @@ class ServerNotifyRequest extends AbstractRequest implements NotificationInterfa
     }
 
     /**
-     * Respond to Opayo confirming or rejecting the notification.
+     * Respond to SagePay confirming or rejecting the notification.
      *
-     * @param string The status to send to Opayo, one of static::RESPONSE_STATUS_*
+     * @param string The status to send to Sage Pay, one of static::RESPONSE_STATUS_*
      * @param string URL to forward the customer to.
      * @param string Optional human readable reason for this response.
      */

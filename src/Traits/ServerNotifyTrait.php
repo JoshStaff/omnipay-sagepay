@@ -1,10 +1,10 @@
 <?php
 
-namespace Omnipay\Opayo\Traits;
+namespace Omnipay\SagePay\Traits;
 
 use Omnipay\Common\Exception\InvalidResponseException;
 use Omnipay\Common\Message\NotificationInterface;
-use Omnipay\Opayo\Message\Response;
+use Omnipay\SagePay\Message\Response;
 
 /**
  * Data access methods shared between the ServerNotificationRequest and
@@ -34,9 +34,9 @@ trait ServerNotifyTrait
         $VPSTxId = $this->getVPSTxId();
 
         if ($this->getTxType() === Response::TXTYPE_TOKEN
-            && $this->getStatus() === Response::OPAYO_STATUS_OK
+            && $this->getStatus() === Response::SAGEPAY_STATUS_OK
         ) {
-            // For some bizarre reason, the VPSTxId is hashed at the Opayo gateway
+            // For some bizarre reason, the VPSTxId is hashed at the Sage Pay gateway
             // without its curly brackets, so we must do the same to validate the hash.
             // This only happens for a valid TOKEN request, and not for an aborted
             // TOKEN request.
@@ -64,7 +64,7 @@ trait ServerNotifyTrait
         );
 
         if ($this->getTxType() !== Response::TXTYPE_TOKEN
-            || $this->getStatus() !== Response::OPAYO_STATUS_OK
+            || $this->getStatus() !== Response::SAGEPAY_STATUS_OK
         ) {
             // Do not use any of these fields for a successful TOKEN transaction,
             // even though some of them may be present.
@@ -122,15 +122,15 @@ trait ServerNotifyTrait
 
         $status = $this->getStatus();
 
-        if ($status === Response::OPAYO_STATUS_OK
-            || $status === Response::OPAYO_STATUS_OK_REPEATED
-            || $status === Response::OPAYO_STATUS_AUTHENTICATED
-            || $status === Response::OPAYO_STATUS_REGISTERED
+        if ($status === Response::SAGEPAY_STATUS_OK
+            || $status === Response::SAGEPAY_STATUS_OK_REPEATED
+            || $status === Response::SAGEPAY_STATUS_AUTHENTICATED
+            || $status === Response::SAGEPAY_STATUS_REGISTERED
         ) {
             return static::STATUS_COMPLETED;
         }
 
-        if ($status === Response::OPAYO_STATUS_PENDING) {
+        if ($status === Response::SAGEPAY_STATUS_PENDING) {
             return static::STATUS_PENDING;
         }
 

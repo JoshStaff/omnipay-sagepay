@@ -1,9 +1,9 @@
 <?php
 
-namespace Omnipay\Opayo\Message;
+namespace Omnipay\SagePay\Message;
 
 /**
- * Opayo Server Authorize Response
+ * Sage Pay Server Authorize Response
  */
 class ServerAuthorizeResponse extends Response
 {
@@ -27,7 +27,7 @@ class ServerAuthorizeResponse extends Response
     {
         return in_array(
             $this->getStatus(),
-            [static::OPAYO_STATUS_OK, static::OPAYO_STATUS_OK_REPEATED]
+            [static::SAGEPAY_STATUS_OK, static::SAGEPAY_STATUS_OK_REPEATED]
         );
     }
 

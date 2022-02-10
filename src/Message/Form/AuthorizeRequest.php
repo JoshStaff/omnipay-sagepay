@@ -1,12 +1,12 @@
 <?php
 
-namespace Omnipay\Opayo\Message\Form;
+namespace Omnipay\SagePay\Message\Form;
 
 /**
- * Opayo Form Authorize Request.
+ * Sage Pay Form Authorize Request.
  */
 
-use Omnipay\Opayo\Message\DirectAuthorizeRequest;
+use Omnipay\SagePay\Message\DirectAuthorizeRequest;
 use Omnipay\Common\Exception\InvalidRequestException;
 
 class AuthorizeRequest extends DirectAuthorizeRequest
@@ -65,7 +65,7 @@ class AuthorizeRequest extends DirectAuthorizeRequest
     ];
 
     /**
-     * Get the full set of Opayo Form data, most of which is encrypted.
+     * Get the full set of Sage Pay Form data, most of which is encrypted.
      * TxType is only PAYMENT, DEFERRED or AUTHENTICATE
      *
      * @reurn array
@@ -93,7 +93,7 @@ class AuthorizeRequest extends DirectAuthorizeRequest
     {
         $data = $this->getBaseAuthorizeData();
 
-        // Some [optional] parameters specific to Opayo Form..
+        // Some [optional] parameters specific to Sage Pay Form..
 
         if ($this->getCustomerName() !== null) {
             $data['CustomerName'] = $this->getCustomerName();

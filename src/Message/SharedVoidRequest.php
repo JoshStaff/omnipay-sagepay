@@ -1,9 +1,9 @@
 <?php
 
-namespace Omnipay\Opayo\Message;
+namespace Omnipay\SagePay\Message;
 
 /**
- * Opayo Shared Void Request
+ * Sage Pay Shared Void Request
  */
 class SharedVoidRequest extends AbstractRequest
 {

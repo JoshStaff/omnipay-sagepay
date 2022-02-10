@@ -1,14 +1,14 @@
 <?php
 
-namespace Omnipay\Opayo\Message;
+namespace Omnipay\SagePay\Message;
 
 /**
- * Opayo Direct Authorize Request
+ * Sage Pay Direct Authorize Request
  */
 class DirectAuthorizeRequest extends AbstractRequest
 {
     /**
-     * @var array Some mapping from Omnipay card brand codes to Opayo card brand codes.
+     * @var array Some mapping from Omnipay card brand codes to Sage Pay card brand codes.
      */
     protected $cardBrandMap = [
         'mastercard' => 'MC',
@@ -103,7 +103,7 @@ class DirectAuthorizeRequest extends AbstractRequest
     }
 
     /**
-     * Opayo throws an error if passed an IPv6 address.
+     * SagePay throws an error if passed an IPv6 address.
      * Filter out addresses that are not IPv4 format.
      *
      * @return string|null The IPv4 IP addess string or null if not available in this format.
@@ -260,7 +260,7 @@ class DirectAuthorizeRequest extends AbstractRequest
     }
 
     /**
-     * @return string Get the card brand in a format expected by Opayo.
+     * @return string Get the card brand in a format expected by Sage Pay.
      */
     protected function getCardBrand()
     {
@@ -278,7 +278,7 @@ class DirectAuthorizeRequest extends AbstractRequest
     /**
      * Set the raw surcharge XML field.
      *
-     * @param string $surchargeXml The XML data formatted as per Opayo documentation.
+     * @param string $surchargeXml The XML data formatted as per Sage Pay documentation.
      * @return $this
      */
     public function setSurchargeXml($surchargeXml)

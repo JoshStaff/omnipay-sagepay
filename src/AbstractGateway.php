@@ -1,9 +1,9 @@
 <?php
 
-namespace Omnipay\Opayo;
+namespace Omnipay\SagePay;
 
 use Omnipay\Common\AbstractGateway as OmnipayAbstractGateway;
-use Omnipay\Opayo\Traits\GatewayParamsTrait;
+use Omnipay\SagePay\Traits\GatewayParamsTrait;
 
 abstract class AbstractGateway extends OmnipayAbstractGateway implements ConstantsInterface
 {

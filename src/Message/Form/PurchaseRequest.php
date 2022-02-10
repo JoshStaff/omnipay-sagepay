@@ -1,9 +1,9 @@
 <?php
 
-namespace Omnipay\Opayo\Message\Form;
+namespace Omnipay\SagePay\Message\Form;
 
 /**
- * Opayo Direct Purchase Request
+ * Sage Pay Direct Purchase Request
  */
 class PurchaseRequest extends AuthorizeRequest
 {

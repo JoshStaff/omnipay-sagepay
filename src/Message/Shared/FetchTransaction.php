@@ -1,13 +1,13 @@
 <?php
 
-namespace Omnipay\Opayo\Message\Shared;
+namespace Omnipay\SagePay\Message\Shared;
 
 /**
- * Opayo fetch a transaction.
+ * Sage Pay fetch a transaction.
  * Reporting command: getTransactionDetail
  */
 
-use Omnipay\Opayo\Message\AbstractRequest;
+use Omnipay\SagePay\Message\AbstractRequest;
 
 class FetchTransaction extends AbstractRequest
 {

@@ -1,24 +1,24 @@
 <?php
 
-namespace Omnipay\Opayo;
+namespace Omnipay\SagePay;
 
 // CHECKME: do we really need these?
-use Omnipay\Opayo\Message\ServerAuthorizeRequest;
-use Omnipay\Opayo\Message\ServerCompleteAuthorizeRequest;
-use Omnipay\Opayo\Message\ServerPurchaseRequest;
-use Omnipay\Opayo\Message\ServerNotifyRequest;
-use Omnipay\Opayo\Message\SharedTokenRemovalRequest;
-use Omnipay\Opayo\Message\ServerTokenRegistrationRequest;
-use Omnipay\Opayo\Message\ServerTokenRegistrationCompleteRequest;
+use Omnipay\SagePay\Message\ServerAuthorizeRequest;
+use Omnipay\SagePay\Message\ServerCompleteAuthorizeRequest;
+use Omnipay\SagePay\Message\ServerPurchaseRequest;
+use Omnipay\SagePay\Message\ServerNotifyRequest;
+use Omnipay\SagePay\Message\SharedTokenRemovalRequest;
+use Omnipay\SagePay\Message\ServerTokenRegistrationRequest;
+use Omnipay\SagePay\Message\ServerTokenRegistrationCompleteRequest;
 
 /**
- * Opayo Server Gateway
+ * Sage Pay Server Gateway
  */
 class ServerGateway extends DirectGateway
 {
     public function getName()
     {
-        return 'Opayo Server';
+        return 'Sage Pay Server';
     }
 
     /**

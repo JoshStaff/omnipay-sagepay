@@ -1,11 +1,11 @@
 <?php
 
-namespace Omnipay\Opayo\Message;
+namespace Omnipay\SagePay\Message;
 
 use Omnipay\Common\Helper;
 
 /**
- * Opayo Direct Repeat Authorize Request
+ * Sage Pay Direct Repeat Authorize Request
  */
 class SharedRepeatPurchaseRequest extends SharedRepeatAuthorizeRequest
 {

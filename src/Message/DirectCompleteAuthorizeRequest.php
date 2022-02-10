@@ -1,11 +1,11 @@
 <?php
 
-namespace Omnipay\Opayo\Message;
+namespace Omnipay\SagePay\Message;
 
 use Omnipay\Common\Exception\InvalidResponseException;
 
 /**
- * Opayo Direct Complete Authorize Request.
+ * Sage Pay Direct Complete Authorize Request.
  */
 class DirectCompleteAuthorizeRequest extends AbstractRequest
 {
@@ -18,7 +18,7 @@ class DirectCompleteAuthorizeRequest extends AbstractRequest
     {
         // Inconsistent letter case is intentional.
         // The issuing bank will return PaRes, but the merchant
-        // site must send this result as PARes to Opayo.
+        // site must send this result as PARes to Sage Pay.
 
         $data = array(
             'MD' => $this->getMd() ?: $this->httpRequest->request->get('MD'),

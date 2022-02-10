@@ -1,12 +1,12 @@
 <?php
 
-namespace Omnipay\Opayo\Message;
+namespace Omnipay\SagePay\Message;
 
 use Omnipay\Common\Exception\InvalidRequestException;
 use Omnipay\Common\Helper;
 
 /**
- * Opayo Direct Repeat Authorize Request
+ * Sage Pay Direct Repeat Authorize Request
  */
 class SharedRepeatAuthorizeRequest extends AbstractRequest
 {
@@ -57,7 +57,7 @@ class SharedRepeatAuthorizeRequest extends AbstractRequest
 
         $data['Description'] = $this->getDescription();
 
-        // Opayo's unique reference for the ORIGINAL transaction
+        // Sage Pay's unique reference for the ORIGINAL transaction
 
         $data['RelatedVendorTxCode'] = $this->getRelatedTransactionId();
         $data['RelatedVPSTxId'] = $this->getVpsTxId();

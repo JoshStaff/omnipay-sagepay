@@ -1,13 +1,13 @@
 <?php
 
-namespace Omnipay\Opayo\Message;
+namespace Omnipay\SagePay\Message;
 
 use Omnipay\Tests\TestCase;
 
 class SharedRepeatPurchaseRequestTest extends TestCase
 {
     /**
-     * @var \Omnipay\Opayo\Message\DirectRepeatPurchaseRequest $request
+     * @var \Omnipay\SagePay\Message\DirectRepeatPurchaseRequest $request
      */
     protected $request;
 

@@ -1,9 +1,9 @@
 <?php
 
-namespace Omnipay\Opayo\Message;
+namespace Omnipay\SagePay\Message;
 
 /**
- * Opayo Server Authorize Request
+ * Sage Pay Server Authorize Request
  */
 class ServerAuthorizeRequest extends DirectAuthorizeRequest
 {

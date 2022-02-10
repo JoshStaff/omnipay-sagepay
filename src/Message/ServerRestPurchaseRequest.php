@@ -1,9 +1,9 @@
 <?php
 
-namespace Omnipay\Opayo\Message;
+namespace Omnipay\SagePay\Message;
 
 /**
- * Opayo REST Server Purchase Request
+ * Sage Pay REST Server Purchase Request
  */
 class ServerRestPurchaseRequest extends AbstractRestRequest
 {
@@ -99,7 +99,7 @@ class ServerRestPurchaseRequest extends AbstractRestRequest
     /**
      * Set the strongCustomerAuthentication field(s).
      *
-     * @param json $strongCustomerAuthentication The strongCustomerAuthentication for Opayo.
+     * @param json $strongCustomerAuthentication The strongCustomerAuthentication for sagepay.
      * @return $this
      */
     public function setStrongCustomerAuthentication($strongCustomerAuthentication)

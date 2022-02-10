@@ -1,6 +1,6 @@
 <?php
 
-namespace Omnipay\Opayo;
+namespace Omnipay\SagePay;
 
 /**
  * A convenient place to put all the gateway constants,
@@ -96,7 +96,7 @@ interface ConstantsInterface
     const CREATE_TOKEN_NO    = 0;
 
     /**
-     * Profile for Opayo Server hosted forms.
+     * Profile for Sage Pay Server hosted forms.
      * - NORMAL for full page forms.
      * - LOW for use in iframes.
      */
@@ -175,19 +175,19 @@ interface ConstantsInterface
      * and in response to different types of request.
      * @var string
      */
-    const OPAYO_STATUS_OK             = 'OK';
-    const OPAYO_STATUS_OK_REPEATED    = 'OK REPEATED';
-    const OPAYO_STATUS_PENDING        = 'PENDING';
-    const OPAYO_STATUS_NOTAUTHED      = 'NOTAUTHED';
-    const OPAYO_STATUS_REJECTED       = 'REJECTED';
-    const OPAYO_STATUS_AUTHENTICATED  = 'AUTHENTICATED';
-    const OPAYO_STATUS_REGISTERED     = 'REGISTERED';
-    const OPAYO_STATUS_3DAUTH         = '3DAUTH';
-    const OPAYO_STATUS_PPREDIRECT     = 'PPREDIRECT';
-    const OPAYO_STATUS_ABORT          = 'ABORT';
-    const OPAYO_STATUS_MALFORMED      = 'MALFORMED';
-    const OPAYO_STATUS_INVALID        = 'INVALID';
-    const OPAYO_STATUS_ERROR          = 'ERROR';
+    const SAGEPAY_STATUS_OK             = 'OK';
+    const SAGEPAY_STATUS_OK_REPEATED    = 'OK REPEATED';
+    const SAGEPAY_STATUS_PENDING        = 'PENDING';
+    const SAGEPAY_STATUS_NOTAUTHED      = 'NOTAUTHED';
+    const SAGEPAY_STATUS_REJECTED       = 'REJECTED';
+    const SAGEPAY_STATUS_AUTHENTICATED  = 'AUTHENTICATED';
+    const SAGEPAY_STATUS_REGISTERED     = 'REGISTERED';
+    const SAGEPAY_STATUS_3DAUTH         = '3DAUTH';
+    const SAGEPAY_STATUS_PPREDIRECT     = 'PPREDIRECT';
+    const SAGEPAY_STATUS_ABORT          = 'ABORT';
+    const SAGEPAY_STATUS_MALFORMED      = 'MALFORMED';
+    const SAGEPAY_STATUS_INVALID        = 'INVALID';
+    const SAGEPAY_STATUS_ERROR          = 'ERROR';
 
     /**
      * Raw values for AddressResult
@@ -227,7 +227,7 @@ interface ConstantsInterface
     const AVSCV2_RESULT_NOT_CHECKED         = 'DATA NOT CHECKED';
 
     /**
-     * Raw values for GiftAidResult (Opayo Server only)
+     * Raw values for GiftAidResult (Sage Pay Serverv only)
      * @var string
      */
     const GIFTAID_CHECKED_TRUE  = '1';
@@ -294,7 +294,7 @@ interface ConstantsInterface
     const PAYER_STATUS_UNVERIFIED   = 'UNVERIFIED';
 
     /**
-     * The raw recorded card type that was used (Opayo Server).
+     * The raw recorded card type that was used (Sage Pay Server).
      * TODO: a translation to OmniPay card brands would be useful.
      * @var string
      */

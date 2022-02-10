@@ -1,9 +1,9 @@
 <?php
 
-namespace Omnipay\Opayo\Message\Form;
+namespace Omnipay\SagePay\Message\Form;
 
 /**
- * Opayo Form Complete Purchase Response.
+ * Sage Pay Form Complete Purchase Response.
  */
 
 class CompletePurchaseRequest extends CompleteAuthorizeRequest

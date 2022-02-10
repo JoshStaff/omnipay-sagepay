@@ -1,26 +1,26 @@
 <?php
 
-namespace Omnipay\Opayo;
+namespace Omnipay\SagePay;
 
-use Omnipay\Opayo\Message\ServerRestAbortRequest;
-use Omnipay\Opayo\Message\ServerRestAuthorizeRequest;
-use Omnipay\Opayo\Message\ServerRestCaptureRequest;
-use Omnipay\Opayo\Message\ServerRestCompletePurchaseRequest;
-use Omnipay\Opayo\Message\ServerRestMerchantSessionKeyRequest;
-use Omnipay\Opayo\Message\ServerRestPurchaseRequest;
-use Omnipay\Opayo\Message\ServerRestRefundRequest;
-use Omnipay\Opayo\Message\ServerRestRepeatRequest;
-use Omnipay\Opayo\Message\ServerRestRetrieveTransactionRequest;
-use Omnipay\Opayo\Message\ServerRestVoidRequest;
+use Omnipay\SagePay\Message\ServerRestAbortRequest;
+use Omnipay\SagePay\Message\ServerRestAuthorizeRequest;
+use Omnipay\SagePay\Message\ServerRestCaptureRequest;
+use Omnipay\SagePay\Message\ServerRestCompletePurchaseRequest;
+use Omnipay\SagePay\Message\ServerRestMerchantSessionKeyRequest;
+use Omnipay\SagePay\Message\ServerRestPurchaseRequest;
+use Omnipay\SagePay\Message\ServerRestRefundRequest;
+use Omnipay\SagePay\Message\ServerRestRepeatRequest;
+use Omnipay\SagePay\Message\ServerRestRetrieveTransactionRequest;
+use Omnipay\SagePay\Message\ServerRestVoidRequest;
 
 /**
- * Opayo Rest Server Gateway
+ * Sage Pay Rest Server Gateway
  */
 class RestServerGateway extends ServerGateway
 {
     public function getName()
     {
-        return 'Opayo REST Server';
+        return 'Sage Pay REST Server';
     }
 
     public function getUsername()
@@ -103,7 +103,7 @@ class RestServerGateway extends ServerGateway
     }
 
     /**
-     * Get transaction information from Opayo.
+     * Get transaction information from Sage.
      */
     public function getTransaction(array $parameters = [])
     {

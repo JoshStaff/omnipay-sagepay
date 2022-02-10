@@ -1,14 +1,14 @@
 <?php
 
-namespace Omnipay\Opayo\Message\Form;
+namespace Omnipay\SagePay\Message\Form;
 
 /**
- * Opayo Form Authorize/Purchase Response (form POST redirect).
+ * Sage Pay Form Authorize/Purchase Response (form POST redirect).
  */
 
 use Omnipay\Common\Message\AbstractResponse;
 use Omnipay\Common\Message\RedirectResponseInterface;
-use Omnipay\Opayo\ConstantsInterface;
+use Omnipay\SagePay\ConstantsInterface;
 
 class Response extends AbstractResponse implements RedirectResponseInterface, ConstantsInterface
 {

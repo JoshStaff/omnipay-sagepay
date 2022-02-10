@@ -1,11 +1,11 @@
 <?php
 
-namespace Omnipay\Opayo\Message;
+namespace Omnipay\SagePay\Message;
 
-use Omnipay\Opayo\Message\ServerRestRefundResponse;
+use Omnipay\SagePay\Message\ServerRestRefundResponse;
 
 /**
- * Opayo REST Server Refund Request
+ * Sage Pay REST Server Refund Request
  */
 class ServerRestRefundRequest extends AbstractRestRequest
 {

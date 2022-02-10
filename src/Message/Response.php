@@ -1,15 +1,15 @@
 <?php
 
-namespace Omnipay\Opayo\Message;
+namespace Omnipay\SagePay\Message;
 
 use Omnipay\Common\Message\AbstractResponse;
 use Omnipay\Common\Message\RedirectResponseInterface;
 use Omnipay\Common\Message\RequestInterface;
-use Omnipay\Opayo\Traits\ResponseFieldsTrait;
-use Omnipay\Opayo\ConstantsInterface;
+use Omnipay\SagePay\Traits\ResponseFieldsTrait;
+use Omnipay\SagePay\ConstantsInterface;
 
 /**
- * Opayo Response
+ * Sage Pay Response
  */
 class Response extends AbstractResponse implements RedirectResponseInterface, ConstantsInterface
 {
@@ -18,7 +18,7 @@ class Response extends AbstractResponse implements RedirectResponseInterface, Co
     /**
      * Gateway Reference
      *
-     * Opayo requires the original VendorTxCode as well as 3 separate
+     * Sage Pay requires the original VendorTxCode as well as 3 separate
      * fields from the response object to capture or refund transactions at a later date.
      *
      * Active Merchant solves this dilemma by returning the gateway reference in the following
@@ -47,7 +47,7 @@ class Response extends AbstractResponse implements RedirectResponseInterface, Co
         }
 
         // Remaining transaction details supplied by the merchant site
-        // if not already in the response (it will be for Opayo Form).
+        // if not already in the response (it will be for Sage Pay Form).
 
         if (! array_key_exists('VendorTxCode', $reference)) {
             $reference['VendorTxCode'] = $this->getTransactionId();
@@ -66,7 +66,7 @@ class Response extends AbstractResponse implements RedirectResponseInterface, Co
      */
     public function isRedirect()
     {
-        return $this->getStatus() === static::OPAYO_STATUS_3DAUTH;
+        return $this->getStatus() === static::SAGEPAY_STATUS_3DAUTH;
     }
 
     /**
@@ -105,7 +105,7 @@ class Response extends AbstractResponse implements RedirectResponseInterface, Co
     }
 
     /**
-     * The Opayo ID to uniquely identify the transaction on their system.
+     * The Sage Pay ID to uniquely identify the transaction on their system.
      * Only present if Status is OK or OK REPEATED.
      *
      * @return string

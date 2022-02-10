@@ -1,15 +1,15 @@
 <?php
 
-namespace Omnipay\Opayo\Message;
+namespace Omnipay\SagePay\Message;
 
 use Omnipay\Common\Message\AbstractResponse;
 use Omnipay\Common\Message\RedirectResponseInterface;
 use Omnipay\Common\Message\RequestInterface;
-use Omnipay\Opayo\Traits\ResponseRestFieldsTrait;
-use Omnipay\Opayo\ConstantsInterface;
+use Omnipay\SagePay\Traits\ResponseRestFieldsTrait;
+use Omnipay\SagePay\ConstantsInterface;
 
 /**
- * Opayo Rest Response
+ * Sage Pay Rest Response
  */
 class RestResponse extends AbstractResponse implements RedirectResponseInterface, ConstantsInterface
 {
@@ -35,7 +35,7 @@ class RestResponse extends AbstractResponse implements RedirectResponseInterface
      */
     public function isRedirect()
     {
-        return $this->getStatus() === static::OPAYO_STATUS_3DAUTH;
+        return $this->getStatus() === static::SAGEPAY_STATUS_3DAUTH;
     }
 
     /**
@@ -81,7 +81,7 @@ class RestResponse extends AbstractResponse implements RedirectResponseInterface
     }
 
     /**
-     * The Opayo ID to uniquely identify the transaction on their system.
+     * The Sage Pay ID to uniquely identify the transaction on their system.
      * Only present if Status is OK or OK REPEATED.
      *
      * @return string

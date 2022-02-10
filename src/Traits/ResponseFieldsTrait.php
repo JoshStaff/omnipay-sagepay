@@ -1,6 +1,6 @@
 <?php
 
-namespace Omnipay\Opayo\Traits;
+namespace Omnipay\SagePay\Traits;
 
 /**
  * Response fields shared between the Direct/Server response class and
@@ -28,10 +28,10 @@ trait ResponseFieldsTrait
      */
     public function isSuccessful()
     {
-        return $this->getStatus() === static::OPAYO_STATUS_OK
-            || $this->getStatus() === static::OPAYO_STATUS_OK_REPEATED
-            || $this->getStatus() === static::OPAYO_STATUS_REGISTERED
-            || $this->getStatus() === static::OPAYO_STATUS_AUTHENTICATED;
+        return $this->getStatus() === static::SAGEPAY_STATUS_OK
+            || $this->getStatus() === static::SAGEPAY_STATUS_OK_REPEATED
+            || $this->getStatus() === static::SAGEPAY_STATUS_REGISTERED
+            || $this->getStatus() === static::SAGEPAY_STATUS_AUTHENTICATED;
     }
 
     /**
@@ -58,7 +58,7 @@ trait ResponseFieldsTrait
     /**
      * The raw status code.
      *
-     * @return string One of static::OPAYO_STATUS_*
+     * @return string One of static::SAGEPAY_STATUS_*
      */
     public function getStatus()
     {
@@ -68,7 +68,7 @@ trait ResponseFieldsTrait
     /**
      * The raw status code.
      *
-     * @return string One of static::OPAYO_STATUS_*
+     * @return string One of static::SAGEPAY_STATUS_*
      */
     public function getCode()
     {
@@ -86,7 +86,7 @@ trait ResponseFieldsTrait
     }
 
     /**
-     * Opayo unique Authorisation Code for a successfully authorised transaction.
+     * Sage Pay unique Authorisation Code for a successfully authorised transaction.
      * Only present if Status is OK
      *
      * @return string
@@ -99,7 +99,7 @@ trait ResponseFieldsTrait
     /**
      * This is the response from AVS and CV2 checks.
      * Provided for Vendor info and backward compatibility with the
-     * banks. Rules set up in MyOpayo will accept or reject
+     * banks. Rules set up in MySagePay will accept or reject
      * the transaction based on these values.
      *
      * More detailed results are split out in the next three fields:
@@ -215,7 +215,7 @@ trait ResponseFieldsTrait
 
     /**
      * Raw expiry date for the card, "MMYY" format by default.
-     * The expiry date is available for Opayo Direct responses, even if the
+     * The expiry date is available for Sage Pay Direct responses, even if the
      * remaining card details are not.
      * Also supports custom formats.
      *

@@ -1,9 +1,9 @@
 <?php
 
-namespace Omnipay\Opayo\Message;
+namespace Omnipay\SagePay\Message;
 
 /**
- * Opayo Server Purchase Request
+ * Sage Pay Server Purchase Request
  */
 class ServerPurchaseRequest extends ServerAuthorizeRequest
 {

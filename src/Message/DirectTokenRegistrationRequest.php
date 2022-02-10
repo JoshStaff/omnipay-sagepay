@@ -1,6 +1,6 @@
 <?php
 
-namespace Omnipay\Opayo\Message;
+namespace Omnipay\SagePay\Message;
 
 /**
  * Register a card with the gateway in exchange for a token.

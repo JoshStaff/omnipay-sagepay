@@ -1,6 +1,6 @@
 <?php
 
-namespace Omnipay\Opayo\Message;
+namespace Omnipay\SagePay\Message;
 
 class ServerTokenRegistrationResponse extends Response
 {
