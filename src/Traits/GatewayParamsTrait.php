@@ -13,6 +13,17 @@ namespace Omnipay\Opayo\Traits;
 
 trait GatewayParamsTrait
 {
+
+    public function getUrl()
+    {
+        return $this->getParameter('url');
+    }
+
+    public function setUrl($value)
+    {
+        return $this->setParameter('url', $value);
+    }
+
     /**
      * @return string The vendor name identified the account.
      */
