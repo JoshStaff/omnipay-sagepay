@@ -28,12 +28,6 @@ abstract class AbstractRequest extends OmnipayAbstractRequest implements Constan
     protected $VPSProtocol = '4.00';
 
     /**
-     * @var string Endpoint base URLs.
-     */
-    protected $liveEndpoint = 'https://live.sagepay.com/gateway/service';
-    protected $testEndpoint = 'https://test.sagepay.com/gateway/service';
-
-    /**
      * Convenience method to switch iframe mode on or off.
      * This sets the profile parameter.
      *
@@ -247,9 +241,11 @@ abstract class AbstractRequest extends OmnipayAbstractRequest implements Constan
      */
     public function getEndpoint()
     {
+        $baseUrl = trim($this->getParameter('url'), '/');
+
         return sprintf(
             '%s/%s.vsp',
-            $this->getTestMode() ? $this->testEndpoint : $this->liveEndpoint,
+            $baseUrl . '/gateway/service',
             $this->getService()
         );
     }

@@ -26,12 +26,6 @@ abstract class AbstractRestRequest extends AbstractRequest implements ConstantsI
 
     protected $method = 'POST';
 
-    /**
-     * @var string Endpoint base URLs.
-     */
-    protected $liveEndpoint = 'https://pi-live.sagepay.com/api';
-    protected $testEndpoint = 'https://pi-test.sagepay.com/api';
-
     public function getMethod()
     {
         return $this->method;
@@ -42,9 +36,11 @@ abstract class AbstractRestRequest extends AbstractRequest implements ConstantsI
      */
     public function getEndpoint()
     {
+        $baseUrl = trim($this->getParameter('url'), '/');
+
         return sprintf(
             '%s/%s/%s',
-            $this->getTestMode() ? $this->testEndpoint : $this->liveEndpoint,
+            $baseUrl . '/api',
             $this->getApiVersion(),
             $this->isSubservice() ? $this->getSubService() : $this->getService()
         );
